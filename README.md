@@ -2,4 +2,4 @@
 
 A Repository
 
-:tea:.
+:tea: & :pizza:.
