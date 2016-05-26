@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Finacial Calculator
+
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-twilight.css')
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+      section
+        h1 Finacial Calculator
+        ul
+          li <a href="/00.html">Default Calculator</a>
+      section
+        h2 Default Calculator
+        div#default
+          div#result
+            div#input 10 * 10
+            br
+            div#hasil 100
+
+          div#template
+            button.bCyan.button(onclick = 'something()') mc
+            button.bCyan.button m+
+            button.bCyan.button m-
+            button.bCyan.button mr
+            button.bBlue.button AC
+            button.bBlue.button C
+            button.bBlue.button ±
+            button.bBlue.button ÷
+            button.bGray.button 7
+            button.bGray.button 8
+            button.bGray.button 9
+            button.bBlue.button x
+            button.bGray.button 4
+            button.bGray.button 5
+            button.bGray.button(onclick = '') 6
+            button.bBlue.button -
+            button.bGray.button 1
+            button.bGray.button 2
+            button.bGray.button 3
+            button.bBlue.button +
+            button.bGray.button 0
+            button.bGray.button 00
+            button.bGray.button .
+            button.bRed.button =
+      section
+    script(src='build/build.js').
+      var something = function() { console.log('something')}
