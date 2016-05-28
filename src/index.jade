@@ -19,80 +19,90 @@ html
         h2 Default Calculator
         div#default
           div#result
-            div#input 10*10
-            br
-            br
-            div#hasil 100
+            div#hasil 
 
           div#keys
-            button.bCyan.key mc
-            button.bCyan.key m+
-            button.bCyan.key m-
-            button.bCyan.key mr
-            button.bBlue.key AC
-            button.bBlue.key C
-            button.bBlue.key ±
-            button.bBlue.key ÷
-            button.bGray.key.num(onclick = "addDigit()") 7
-            button.bGray.key.num(onclick = "addDigit()") 8
-            button.bGray.key.num(onclick = "addDigit()") 9
-            button.bBlue.key x
-            button.bGray.key.num(onclick = "addDigit()") 4
-            button.bGray.key.num(onclick = "addDigit()") 5
-            button.bGray.key.num(onclick = "addDigit()") 6
-            button.bBlue.key -
-            button.bGray.key.num(onclick = "addDigit()") 1
-            button.bGray.key.num(onclick = "addDigit()") 2
-            button.bGray.key.num(onclick = "addDigit()") 3
-            button.bBlue.key +
-            button.bGray.key.num(onclick = "addDigit()") 0
-            button.bGray.key.num(onclick = "addDigit()") 00
-            button.bGray.key .
-            button.bRed.key =
+            button.bBlue.key(onclick = "Clear()") C
+            button.bBlue.key(onclick = "Backspace()") ←
+            button.bBlue.key(onclick = "Inverse()") ±
+            button.bBlue.key(onclick = "Operator('÷')") ÷
+            button.bGray.key(onclick = "AddDigit(7)") 7
+            button.bGray.key(onclick = "AddDigit(8)") 8
+            button.bGray.key(onclick = "AddDigit(9)") 9
+            button.bBlue.key(onclick = "Operator('x')") x
+            button.bGray.key(onclick = "AddDigit(4)") 4
+            button.bGray.key(onclick = "AddDigit(5)") 5
+            button.bGray.key(onclick = "AddDigit(6)") 6
+            button.bBlue.key(onclick = "Operator('-')") -
+            button.bGray.key(onclick = "AddDigit(1)") 1
+            button.bGray.key(onclick = "AddDigit(2)") 2
+            button.bGray.key(onclick = "AddDigit(3)") 3
+            button.bBlue.key(onclick = "Operator('+')") +
+            button.bWlarge.bGray.key(onclick = "AddDigit(0)") 0
+            button.bGray.key(onclick = "Add('.')") .
+            button.bRed.key(onclick = "Equal()") =
       section
-    script(src='build/build.js').
-      var keychars = document.querySelectorAll(".num").value;
-      var operators = ['+', '-', 'x', '÷'];
+    script(src='build/build.js')
+    script.
+      var result = document.getElementById("hasil")
+      var operator = ['+','-','x','÷'];
       var decimalAdded = false;
-      for(var i = 0; i < keys.length; i++) {
-        keys[i].onclick = function(e) {
-          var input = document.querySelector('#hasil');
-          var inputVal = input.innerHTML;
-          var btnVal = this.innerHTML;
-          if(btnVal == 'C') {
-            input.innerHTML = '';
-            decimalAdded = false;
+      function Add(Key) {
+        if (!decimalAdded) {
+          result.innerHTML += Key
+          decimalAdded = true
+        }
+      }
+      function AddDigit(Num) {
+        if (Num === 0){
+          if (result.innerHTML === '' || result.innerHTML !== '0') {
+            result.innerHTML += Num
           }
-          else if(btnVal == '=') {
-            var equation = inputVal;
-            var lastChar = equation[equation.length - 1];
-            equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
-            if(operators.indexOf(lastChar) > -1 || lastChar == '.')
-              equation = equation.replace(/.$/, '');
-      
-            if(equation)
-              input.innerHTML = eval(equation);
-        
-            decimalAdded = false;
-
-            else if(operators.indexOf(btnVal) > -1) {
-              var lastChar = inputVal[inputVal.length - 1];
-              if(inputVal != '' && operators.indexOf(lastChar) == -1) 
-                input.innerHTML += btnVal;
-              else if(inputVal == '' && btnVal == '-') 
-                input.innerHTML += btnVal;
-              if(operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
-                input.innerHTML = inputVal.replace(/.$/, btnVal);
-              }
-              decimalAdded =false;
-            }
-          else if(btnVal == '.') {
-            if(!decimalAdded) {
-            input.innerHTML += btnVal;
-            decimalAdded = true;
+        }
+        else {
+          if (result.innerHTML === '0') {
+            result.innerHTML = ''
+            result.innerHTML += Num
           }
-          else {
-            input.innerHTML += btnVal;
+          else { 
+            result.innerHTML += Num 
           }
         }
       }
+      function Backspace() {
+        result.innerHTML = result.innerHTML.substr(0, result.innerHTML.length - 1);
+      }
+      function Clear() {
+        result.innerHTML = ''
+        operator = ''
+        decimalAdded = false
+      }
+      function Equal() {
+        var equation = result.innerHTML;
+        var lastChar = equation[equation.length - 1];
+        equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+        //if(operators.indexOf(lastChar) > -1 || lastChar == '.') {
+        //  equation = equation.replace(/.$/, '');
+        //}
+        result.innerHTML = eval(equation);
+      }
+      function Inverse() {
+        var res = result.innerHTML
+        res = res * -1
+        result.innerHTML = res
+      }
+      function Operator(op) {
+        if (op === '+') {
+          result.innerHTML += "+"
+        }
+        else if (op === '-') {
+          result.innerHTML += "-"
+        }
+        else if (op === 'x') {
+          result.innerHTML += "x"
+        }
+        else if (op === '÷') {
+          result.innerHTML += "÷"
+        }
+        decimalAdded = false
+      }  
