@@ -1,35 +1,30 @@
+/* A) Default Calculator */
 div#default
 	background : #202060
-	border : 0px solid
 	border-radius : 10px
 	margin : 0px auto
 	width : 320px
 	height : 260px
+	box-shadow : 0px 5px #101030, 0px 10px 15px rgba(0, 0, 0, 0.2);
 
 div#result
+	overflow: hidden;
 	color : black
 	background : #E0FFE0
-	border : 0px solid
 	border-radius : 5px
 	margin : 20px 20px 10px
+	padding : 0px 10px
 	width : 280px
 	height : 40px
-
-div#result div p 
+	font-size : 36px
 	text-align : right
+	direction = rtl
+	box-shadow: inset 0px 5px #B0CCB0;
 
 div#command
 	background : transparent
 	color : black
 	font-size : 24px
-	float : right
-	text-align : right
-	direction = rtl
-	
-div#hasil
-	background : transparent
-	color : black
-	font-size : 36px
 	float : right
 	text-align : right
 	direction = rtl
@@ -40,28 +35,178 @@ div#keys
 	padding : 0px 10px 15px
 
 .key
+	position: relative;
 	float : left
 	margin : 5px 10px
 	width : 55px
 	height : 25px
 	color : white
-	border : 0px solid
 	border-radius : 5px
 	font : 12px
 	line-height : 25px
 	text-align : center
+	top : 0px
+	transition: all 0.2s ease;
 	
 .bWlarge
 	width : 130px
 
 .bBlue
-	background : #0000ff
+	background : #0080ff
+	box-shadow : 0px 5px #004080
 
 .bCyan
 	background : #008080
+	box-shadow : 0px 5px #004040
 
 .bGray 
 	background : #808080
+	box-shadow : 0px 5px #404040
 
 .bRed
 	background : #ff0000
+	box-shadow : 0px 5px #800000
+
+.bBlue:hover
+	background : #00c0ff
+	box-shadow : 0px 5px #0060c0
+
+.bCyan:hover
+	background : #00C0C0
+	box-shadow : 0px 5px #006060
+
+.bGray:hover
+	background : #C0C0C0
+	box-shadow : 0px 5px #606060
+
+.bRed:hover
+	background : #ff4040
+	box-shadow : 0px 5px #C03030
+
+.key:hover
+	cursor : pointer
+
+.key:active
+	box-shadow : 0px 0px
+	top : 5px
+/* A) */
+
+/* B) Tip Calculator */
+div#tip
+	margin : 0px auto
+	width : 420px
+	height : 285px
+
+div.settings
+	margin : 0px auto
+	width : 301px
+	height : 40px
+
+div#btax
+	width : 150px
+	height : 30px
+	float : left
+	text-align : center
+	line-height : 30px
+	border : 1px solid #00BBFF
+	border-radius : 5px 0px 0px 5px
+
+div#atax
+	width : 150px
+	height : 30px
+	float : left
+	text-align : center
+	line-height : 30px
+	border : 1px solid #00BBFF
+	border-radius : 0px 5px 5px 0px
+	position : relative
+	left : -1px
+
+.selected
+	background : #00BBFF
+	border-color : #F0F0F0
+	color : #F0F0F0
+
+div#tip div.board
+	margin : 0px auto
+	padding : 10px
+	width : 301px
+	height : 40px
+
+div#tip .bill
+	width : 100px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0);
+
+div#tip .tax
+	width : 80px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0);
+
+/* B) */
+
+/* C) Percentage Calculator */
+div#percentage
+	margin : 0px auto
+	width : 420px
+	height : 285px
+
+div#percentage div
+	width : 300px
+	height : 35px
+	text-align : left
+	line-height : 45px
+	float : left
+
+div#percentage .reset 
+	width : 100px
+	height : 30px
+	margin : 0px 10px
+	background : linear-gradient(#4080C0, #90C0F0);
+	border-radius : 5px
+	box-shadow : 0px 5px #68A0D8 
+	text-align : center
+	line-height : 30px
+	color : #ffffff
+	float : left
+	position : relative
+	top : 0px
+
+div#percentage .reset:hover
+	background : linear-gradient(#60A0E0, #90E0F0);
+	box-shadow : 0px 5px #78C0E8 
+	text-shadow : 0px 0px 5px #ffffff
+	cursor : pointer
+
+div#percentage .reset:active
+	box-shadow : 0px 0px
+	top : 5px
+	transition: all 0.25s ease;
+
+div#percentage .board
+	float : left
+	width : 420px
+	height : 30px
+	margin : 5px 0px
+	padding : 0px 10px
+	line-height : 30px
+	text-align : left
+
+div#percentage .info
+	float : left
+	width : 420px
+	height : 30px
+	margin-bottom : 5px
+	padding : 0px 10px
+	line-height : 30px
+	text-align : left
+
+div#percentage .board input
+	width : 60px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0);
+	
+/* C) */

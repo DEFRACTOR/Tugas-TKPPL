@@ -19,33 +19,74 @@ html
         h2 Default Calculator
         div#default
           div#result
-            div#hasil 
-
           div#keys
-            button.bBlue.key(onclick = "Clear()") C
-            button.bBlue.key(onclick = "Backspace()") ←
-            button.bBlue.key(onclick = "Inverse()") ±
-            button.bBlue.key(onclick = "Operator('÷')") ÷
-            button.bGray.key(onclick = "AddDigit(7)") 7
-            button.bGray.key(onclick = "AddDigit(8)") 8
-            button.bGray.key(onclick = "AddDigit(9)") 9
-            button.bBlue.key(onclick = "Operator('x')") x
-            button.bGray.key(onclick = "AddDigit(4)") 4
-            button.bGray.key(onclick = "AddDigit(5)") 5
-            button.bGray.key(onclick = "AddDigit(6)") 6
-            button.bBlue.key(onclick = "Operator('-')") -
-            button.bGray.key(onclick = "AddDigit(1)") 1
-            button.bGray.key(onclick = "AddDigit(2)") 2
-            button.bGray.key(onclick = "AddDigit(3)") 3
-            button.bBlue.key(onclick = "Operator('+')") +
-            button.bWlarge.bGray.key(onclick = "AddDigit(0)") 0
-            button.bGray.key(onclick = "Add('.')") .
-            button.bRed.key(onclick = "Equal()") =
+            div.bBlue.key(onclick = "Clear()") C
+            div.bBlue.key(onclick = "Backspace()") ←
+            div.bBlue.key(onclick = "Inverse()") ±
+            div.bBlue.key(onclick = "Operator('÷')") ÷
+            div.bGray.key(onclick = "AddDigit(7)") 7
+            div.bGray.key(onclick = "AddDigit(8)") 8
+            div.bGray.key(onclick = "AddDigit(9)") 9
+            div.bBlue.key(onclick = "Operator('x')") x
+            div.bGray.key(onclick = "AddDigit(4)") 4
+            div.bGray.key(onclick = "AddDigit(5)") 5
+            div.bGray.key(onclick = "AddDigit(6)") 6
+            div.bBlue.key(onclick = "Operator('-')") -
+            div.bGray.key(onclick = "AddDigit(1)") 1
+            div.bGray.key(onclick = "AddDigit(2)") 2
+            div.bGray.key(onclick = "AddDigit(3)") 3
+            div.bBlue.key(onclick = "Operator('+')") +
+            div.bWlarge.bGray.key(onclick = "AddDigit(0)") 0
+            div.bGray.key(onclick = "Add('.')") .
+            div.bRed.key(onclick = "Equal()") =
       section
+        h2 Tip Calculator
+        div#tip
+          div.settings
+            div#btax(onclick="tipOption('b')") Tip Before Tax
+            div#atax(onclick="tipOption('a')") Tip After Tax
+          div.board
+            span  Bill 
+            input.bill(type = "text" value = '' oninput="Tinfo('bill')" autocomplete='off')
+            span  Tax(%) 
+            input.tax(type = "text" value = '' oninput="Tinfo('bill')" autocomplete='off')
+
+      section
+        h2 Percentage Calculator
+        div#percentage
+          div What is X% of Y?
+          div.reset(onclick = "Reset(1)") RESET
+          div.board 
+            input#input1X(type = "text" value = '' oninput="Pinfo('1X')" autocomplete='off')
+            span % of
+            input#input1Y(type = "text" value = '' oninput="Pinfo('1Y')" autocomplete='off')
+          div.info#perc1 
+          br
+          div What percent is X of Y?
+          div.reset(onclick = "Reset(2)") RESET
+          div.board
+            input#input2X(type = "text" value = '' oninput="Pinfo('2X')" autocomplete='off')
+            span of
+            input#input2Y(type = "text" value = '' oninput="Pinfo('2Y')" autocomplete='off')
+          div.info#perc2 
+          br
+          div What's percent change X to Y?
+          div.reset(onclick = "Reset(3)") RESET
+          div.board 
+            span From 
+            input#input3X(type = "text" value = '' oninput="Pinfo('3X')" autocomplete='off')
+            span to
+            input#input3Y(type = "text" value = '' oninput="Pinfo('3Y')" autocomplete='off')
+          div.info#perc3 
+          br
+      section
+
     script(src='build/build.js')
+    // A) Basic Calculator
     script.
-      var result = document.getElementById("hasil")
+      var result = document.getElementById("result")
       var operator = ['+','-','x','÷'];
+      var operatorAdded = false;
       var decimalAdded = false;
       function Add(Key) {
         if (!decimalAdded) {
@@ -54,7 +95,7 @@ html
         }
       }
       function AddDigit(Num) {
-        if (Num === 0){
+        if (Num === 0) {
           if (result.innerHTML === '' || result.innerHTML !== '0') {
             result.innerHTML += Num
           }
@@ -68,6 +109,7 @@ html
             result.innerHTML += Num 
           }
         }
+        operatorAdded = false 
       }
       function Backspace() {
         result.innerHTML = result.innerHTML.substr(0, result.innerHTML.length - 1);
@@ -84,6 +126,7 @@ html
         //if(operators.indexOf(lastChar) > -1 || lastChar == '.') {
         //  equation = equation.replace(/.$/, '');
         //}
+        operatorAdded = false
         result.innerHTML = eval(equation);
       }
       function Inverse() {
@@ -92,17 +135,111 @@ html
         result.innerHTML = res
       }
       function Operator(op) {
-        if (op === '+') {
-          result.innerHTML += "+"
+        if (!operatorAdded){
+          if (op === '+') {
+            result.innerHTML += "+"
+          }
+          else if (op === '-') {
+            result.innerHTML += "-"
+          }
+          else if (op === 'x') {
+            result.innerHTML += "x"
+          }
+          else if (op === '÷') {
+            result.innerHTML += "÷"
+          }
+          operatorAdded = true
+          decimalAdded = false
         }
-        else if (op === '-') {
-          result.innerHTML += "-"
+      } 
+    // A)
+
+    // B) Tip Calculator
+    script.
+      var bbool = document.getElementById("btax")
+      var abool = document.getElementById("atax")
+      bbool.className = "selected"
+      function tipOption(Opt) {
+        if (Opt === 'b' && abool.className === "selected") {
+          bbool.className = "selected"
+          abool.className = ""
         }
-        else if (op === 'x') {
-          result.innerHTML += "x"
+        if (Opt === 'a' && bbool.className === "selected") {
+          abool.className = "selected"
+          bbool.className = ""
         }
-        else if (op === '÷') {
-          result.innerHTML += "÷"
+      }
+    // B)
+
+    // C) Percentage Calculator
+    script. 
+      var x1 = document.getElementById("input1X")
+      var y1 = document.getElementById("input1Y")
+      var x2 = document.getElementById("input2X")
+      var y2 = document.getElementById("input2Y")
+      var x3 = document.getElementById("input3X")
+      var y3 = document.getElementById("input3Y")
+      var info1 = document.getElementById("perc1")
+      var info2 = document.getElementById("perc2")
+      var info3 = document.getElementById("perc3")
+
+      function Pinfo(ID) {
+        if (ID === '1X') {
+          console.log('1X')
+          x1.value = document.getElementById("input1X").value
         }
-        decimalAdded = false
-      }  
+        else if (ID === '1Y') {
+          console.log('1Y')
+          y1.value = document.getElementById("input1Y").value
+        }
+        else if (ID === '2X') {
+          console.log('2X')
+          x2.value = document.getElementById("input2X").value
+        }
+        else if (ID === '2Y') {
+          console.log('2Y')
+          y2.value = document.getElementById("input2Y").value
+        }
+        else if (ID === '3X') {
+          console.log('3X')
+          x3.value = document.getElementById("input3X").value
+        }
+        else {
+          console.log('3Y')
+          y3.value = document.getElementById("input3Y").value
+        }
+        if (x1.value.length != 0 && y1.value.length != 0) {
+          console.log('1Z')
+          var hasil = x1.value / 100 * y1.value
+          info1.innerHTML = x1.value + "% of " + y1.value + " is: " + hasil.toFixed(2)
+        }
+        if (x2.value.length != 0 && y2.value.length != 0) {
+          console.log('2Z')
+          var hasil = x2.value / y2.value * 100
+          info2.innerHTML = x1.value + " of " + y1.value + " is: " + hasil.toFixed(2) + "%"
+        }
+        if (x3.value.length != 0 && y3.value.length != 0) {
+          console.log('3Z')
+          var hasil = (y3.value - x3.value) / x3.value * 100
+          info3.innerHTML = "From " + x1.value + " to " + y1.value + " is: " + hasil.toFixed(2) + "%"
+        }
+      }
+
+      function Reset(Num) {
+        if (Num === 1) {
+          x1.value = ''
+          y1.value = ''
+          info1.innerHTML = ''
+        }
+        else if (Num === 2) {
+          x2.value = ''
+          y2.value = ''
+          info2.innerHTML = ''
+        }
+        else {
+          x3.value = ''
+          y3.value = ''
+          info3.innerHTML = ''
+        }
+      }
+    // C)
