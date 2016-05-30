@@ -46,11 +46,37 @@ html
             div#btax(onclick="tipOption('b')") Tip Before Tax
             div#atax(onclick="tipOption('a')") Tip After Tax
           div.board
-            span  Bill 
-            input.bill(type = "text" value = '' oninput="Tinfo('bill')" autocomplete='off')
-            span  Tax(%) 
-            input.tax(type = "text" value = '' oninput="Tinfo('bill')" autocomplete='off')
-
+            span Bill
+            input#bill(type = "text" value = '' oninput="Tinfo('bill')" autocomplete='off') 
+            span &nbsp;&nbsp;Tax(%)
+            input#tax(type = "text" value = '' oninput="Tinfo('tax')" autocomplete='off')
+            br
+            div.slider
+              span Tip (%)
+              input#tipp.range(type="range" min="0" max="100" value="0" step="1" onchange="tipPercent(this.value)" autocomplete='off')
+              span#slideval1 0%
+              br
+              span Split&nbsp;&#160;&nbsp;&#160;
+              input#split.range(type="range" min="0" max="10" value="0" step="1" onchange="tipSplit(this.value)" autocomplete='off')
+              span#slideval2 0
+            div.reset RESET
+            div.info
+              div.null
+              div.kol Total
+              div.kol Each
+              br
+              div.bar Tax Amount : 
+              div#A1.kol 
+              div#B1.kol 
+              br
+              div.bar Tip Amount :
+              div#A2.kol 
+              div#B2.kol 
+              br
+              div.bar Payment :
+              div#A3.kol 
+              div#B3.kol 
+          
       section
         h2 Percentage Calculator
         div#percentage
@@ -156,19 +182,92 @@ html
 
     // B) Tip Calculator
     script.
-      var bbool = document.getElementById("btax")
-      var abool = document.getElementById("atax")
-      bbool.className = "selected"
+      var bill = document.getElementById("bill")
+      var tax = document.getElementById("tax")
+      var tipp = document.getElementById("tipp")
+      var split = document.getElementById("split")
+      var b = document.getElementById("btax")
+      var a = document.getElementById("atax")
+      var after = false
+      var output = false
+      b.className = "selected"
+      var A1 = document.getElementById("A1")
+      var B1 = document.getElementById("B1")
+      var A2 = document.getElementById("A1")
+      var B2 = document.getElementById("B2")
+      var A3 = document.getElementById("A3")
+      var B3 = document.getElementById("B3")
+
       function tipOption(Opt) {
-        if (Opt === 'b' && abool.className === "selected") {
-          bbool.className = "selected"
-          abool.className = ""
+        if (Opt === 'b' && a.className === "selected") {
+          b.className = "selected"
+          a.className = ""
+          after = false
         }
-        if (Opt === 'a' && bbool.className === "selected") {
-          abool.className = "selected"
-          bbool.className = ""
+
+        if (Opt === 'a' && b.className === "selected") {
+          a.className = "selected"
+          b.className = ""
+          after = true
         }
       }
+
+      function tipPercent (slider) {
+        var slideval1 = document.getElementById('slideval1')
+        slideval1.innerHTML = slider + '%'  
+        tipp.value = document.getElementById('tipp').value
+        if (output) {
+          operate()
+        }
+      }
+
+      function tipSplit (slider) {
+        var slideval2 = document.getElementById('slideval2')
+        slideval2.innerHTML = slider  
+        split.value = document.getElementById('split').value
+        if (output) {
+          operate()
+        }
+      }
+
+      function Tinfo (text) {
+        if (text === 'bill') {
+          bill.value = document.getElementById('bill').value
+          output = true
+          operate()
+        }
+        else {
+          tax.value = document.getElementById('tax').value
+          if (output) {
+            operate()
+          }
+        }
+      }
+
+      function operate(){
+        if (!after) { 
+         var hasil1 = (bill.value * tax.value / 100)
+         var hasil2 = ((bill.value * tax.value / 100) / split.value)
+         var hasil3 = (bill.value * tip.value / 100)
+         var hasil4 = ((bill.value * tip.value / 100) / split.value)
+         var hasil5 = (bill.value + hasil1 + hasil3)
+         var hasil6 = (hasil5 / 2)
+         alert(hasil1);
+         alert(hasil2);
+         alert(hasil3);
+         alert(hasil4);
+         alert(hasil5);
+         alert(hasil6);
+          A1.innerHTML = "" + hasil1.toFixed(2)
+          B1.innerHTML = "" + hasil2.toFixed(2)
+          A2.innerHTML = "" + hasil3.toFixed(2)
+          B2.innerHTML = "" + hasil4.toFixed(2)
+          A3.innerHTML = "" + hasil5.toFixed(2)
+          B3.innerHTML = "" + hasil6.toFixed(2)
+        }
+      }
+      
+
     // B)
 
     // C) Percentage Calculator
@@ -185,41 +284,32 @@ html
 
       function Pinfo(ID) {
         if (ID === '1X') {
-          console.log('1X')
           x1.value = document.getElementById("input1X").value
         }
         else if (ID === '1Y') {
-          console.log('1Y')
           y1.value = document.getElementById("input1Y").value
         }
         else if (ID === '2X') {
-          console.log('2X')
           x2.value = document.getElementById("input2X").value
         }
         else if (ID === '2Y') {
-          console.log('2Y')
           y2.value = document.getElementById("input2Y").value
         }
         else if (ID === '3X') {
-          console.log('3X')
           x3.value = document.getElementById("input3X").value
         }
         else {
-          console.log('3Y')
           y3.value = document.getElementById("input3Y").value
         }
         if (x1.value.length != 0 && y1.value.length != 0) {
-          console.log('1Z')
           var hasil = x1.value / 100 * y1.value
           info1.innerHTML = x1.value + "% of " + y1.value + " is: " + hasil.toFixed(2)
         }
         if (x2.value.length != 0 && y2.value.length != 0) {
-          console.log('2Z')
           var hasil = x2.value / y2.value * 100
           info2.innerHTML = x1.value + " of " + y1.value + " is: " + hasil.toFixed(2) + "%"
         }
         if (x3.value.length != 0 && y3.value.length != 0) {
-          console.log('3Z')
           var hasil = (y3.value - x3.value) / x3.value * 100
           info3.innerHTML = "From " + x1.value + " to " + y1.value + " is: " + hasil.toFixed(2) + "%"
         }

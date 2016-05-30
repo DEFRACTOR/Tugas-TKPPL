@@ -131,19 +131,76 @@ div#tip div.board
 	margin : 0px auto
 	padding : 10px
 	width : 301px
-	height : 40px
+	height : 233px
+	text-align : left
 
-div#tip .bill
-	width : 100px
-	height : 20px
-	direction : rtl
-	background : linear-gradient(#60B0D0,#80D0F0);
-
-div#tip .tax
+div#tip #bill
 	width : 80px
 	height : 20px
 	direction : rtl
-	background : linear-gradient(#60B0D0,#80D0F0);
+	background : linear-gradient(#60B0D0,#80D0F0)
+
+div#tip .range
+	width : 100px
+	height : 20px
+	position : relative
+	top : 5px
+
+div#tip #tax
+	width : 100px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0)
+
+div.board div.slider
+	width : 210px
+	height : 50px
+	margin : 10px 0px
+	float : left
+
+div#tip div.reset
+	width : 60px
+	height : 45px
+	margin : 10px 0px
+	background : linear-gradient(#80C040, #C0F090)
+	box-shadow : 0px 5px #A0D868
+	color : white
+	text-align : center
+	line-height : 45px
+	float : right
+	position : relative
+	top : 0px
+
+div#tip div.reset:hover
+	background : linear-gradient(#A0E060, #E0F090)
+	text-shadow : 0px 0px 5px #FFFFFF
+	box-shadow : 0px 5px #C0E878
+
+div#tip div.reset:active
+	box-shadow : 0px 0px
+	top : 5px
+	transition: all 0.25s ease;
+
+div#tip div.info 
+	width : 281px
+	height : 120px
+	float : left
+
+div#tip div.null, div#tip div.bar
+	margin : 5px
+	width : 120px
+	height : 20px
+	text-align : left
+	line-height : 20px
+	float : left
+
+div#tip div.kol
+	margin : 5px
+	width : 60px
+	height : 20px
+	text-align : center
+	line-height : 20px
+	float : left
 
 /* B) */
 
@@ -157,14 +214,14 @@ div#percentage div
 	width : 300px
 	height : 35px
 	text-align : left
-	line-height : 45px
+	line-height : 35px
 	float : left
 
 div#percentage .reset 
 	width : 100px
 	height : 30px
 	margin : 0px 10px
-	background : linear-gradient(#4080C0, #90C0F0);
+	background : linear-gradient(#4080C0, #90C0F0)
 	border-radius : 5px
 	box-shadow : 0px 5px #68A0D8 
 	text-align : center
@@ -207,6 +264,6 @@ div#percentage .board input
 	width : 60px
 	height : 20px
 	direction : rtl
-	background : linear-gradient(#60B0D0,#80D0F0);
+	background : linear-gradient(#60B0D0,#80D0F0)
 	
 /* C) */
