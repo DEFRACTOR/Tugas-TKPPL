@@ -1,0 +1,1 @@
+html2jade index.html --donotencode --noemptypipe --noattrcomma --numeric
