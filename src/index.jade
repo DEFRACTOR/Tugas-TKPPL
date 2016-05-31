@@ -53,13 +53,13 @@ html
             br
             div.slider
               span Tip (%)
-              input#tipp.range(type="range" min="0" max="100" value="0" step="1" onchange="tipPercent(this.value)" autocomplete='off')
+              input#tipp.range(type="range" min="0" max="100" value="0" step="1" oninput="tipPercent(this.value)" onchange="tipPercent(this.value)" autocomplete='off')
               span#slideval1 0%
               br
               span Split&nbsp;&#160;&nbsp;&#160;
-              input#split.range(type="range" min="0" max="10" value="0" step="1" onchange="tipSplit(this.value)" autocomplete='off')
-              span#slideval2 0
-            div.reset RESET
+              input#split.range(type="range" min="1" max="10" value="0" step="1" oninput="tipSplit(this.value)" onchange="tipSplit(this.value)" autocomplete='off')
+              span#slideval2 1
+            div.reset(onclick="tipReset()") RESET
             div.info
               div.null
               div.kol Total
@@ -75,8 +75,8 @@ html
               br
               div.bar Payment :
               div#A3.kol 
-              div#B3.kol 
-          
+              div#B3.kol
+          div#t.teks 
       section
         h2 Percentage Calculator
         div#percentage
@@ -193,7 +193,7 @@ html
       b.className = "selected"
       var A1 = document.getElementById("A1")
       var B1 = document.getElementById("B1")
-      var A2 = document.getElementById("A1")
+      var A2 = document.getElementById("A2")
       var B2 = document.getElementById("B2")
       var A3 = document.getElementById("A3")
       var B3 = document.getElementById("B3")
@@ -210,6 +210,9 @@ html
           b.className = ""
           after = true
         }
+        if (output) {
+          operate()
+        }
       }
 
       function tipPercent (slider) {
@@ -219,6 +222,23 @@ html
         if (output) {
           operate()
         }
+      }
+
+      function tipReset () {
+        bill.value = ''
+        tax.value = ''
+        tipp.value = 0
+        split.value = 1
+        var output = false
+        slideval1.innerHTML = 0 + '%'
+        slideval2.innerHTML = 1
+        A1.innerHTML = ""
+        B1.innerHTML = ""
+        A2.innerHTML = ""
+        B2.innerHTML = ""
+        A3.innerHTML = ""
+        B3.innerHTML = ""
+        document.getElementById('t').innerHTML = ""
       }
 
       function tipSplit (slider) {
@@ -245,25 +265,71 @@ html
       }
 
       function operate(){
+        var a = parseFloat(bill.value)
+        var b
+        if (tax.value == '') b = 0;
+        else b = parseFloat(tax.value)
+        var c
+        if (tipp.value == '') c = 0;
+        else c = parseFloat(tipp.value)
+        var d = parseFloat(split.value)
         if (!after) { 
-         var hasil1 = (bill.value * tax.value / 100)
-         var hasil2 = ((bill.value * tax.value / 100) / split.value)
-         var hasil3 = (bill.value * tip.value / 100)
-         var hasil4 = ((bill.value * tip.value / 100) / split.value)
-         var hasil5 = (bill.value + hasil1 + hasil3)
-         var hasil6 = (hasil5 / 2)
-         alert(hasil1);
-         alert(hasil2);
-         alert(hasil3);
-         alert(hasil4);
-         alert(hasil5);
-         alert(hasil6);
-          A1.innerHTML = "" + hasil1.toFixed(2)
-          B1.innerHTML = "" + hasil2.toFixed(2)
-          A2.innerHTML = "" + hasil3.toFixed(2)
-          B2.innerHTML = "" + hasil4.toFixed(2)
-          A3.innerHTML = "" + hasil5.toFixed(2)
-          B3.innerHTML = "" + hasil6.toFixed(2)
+          var hasil1 = a * b / 100
+          var hasil2 = hasil1 / d
+          var hasil3 = a * c / 100
+          var hasil4 = hasil3 / d
+          var hasil5 = a + hasil1 + hasil3
+          var hasil6 = hasil5 / d
+          A1.innerHTML = hasil1.toFixed(2)
+          B1.innerHTML = hasil2.toFixed(2)
+          A2.innerHTML = hasil3.toFixed(2)
+          B2.innerHTML = hasil4.toFixed(2)
+          A3.innerHTML = hasil5.toFixed(2)
+          B3.innerHTML = hasil6.toFixed(2)
+
+          var total = a + hasil1
+          var grandtotal = Math.ceil(hasil5)
+
+          while(grandtotal % d != 0) {
+            grandtotal++
+          }
+
+          var newtip = grandtotal - total
+
+          var t1 = (Math.ceil(B3.innerHTML)).toFixed(2)
+          var t2 = (newtip / d).toFixed(2)
+          var t3 = ((newtip / a) * 100).toFixed(2)
+
+          document.getElementById('t').innerHTML = "Round each payment up : Each Pay is " + t1 + "; Each Tip is " + t2 + "; Tip percentage is " + t3 + "%"
+        }
+        else {
+          var hasil1 = a * b / 100
+          var hasil2 = hasil1 / d
+          var hasil3 = a * c / 100 + a * c / 100 * b / 100
+          var hasil4 = hasil3 / d
+          var hasil5 = a + hasil1 + hasil3
+          var hasil6 = hasil5 / d
+          A1.innerHTML = hasil1.toFixed(2)
+          B1.innerHTML = hasil2.toFixed(2)
+          A2.innerHTML = hasil3.toFixed(2)
+          B2.innerHTML = hasil4.toFixed(2)
+          A3.innerHTML = hasil5.toFixed(2)
+          B3.innerHTML = hasil6.toFixed(2)
+
+          var total = a + hasil1
+          var grandtotal = Math.ceil(hasil5)
+
+          while(grandtotal % d != 0) {
+            grandtotal++
+          }
+
+          var newtip = grandtotal - total
+
+          var t1 = (Math.ceil(B3.innerHTML)).toFixed(2)
+          var t2 = (newtip / d).toFixed(2)
+          var t3 = ((newtip / total) * 100).toFixed(2)
+
+          document.getElementById('t').innerHTML = "Round each payment up : Each Pay is " + t1 + "; Each Tip is " + t2 + "; Tip percentage is " + t3 + "%"
         }
       }
       
