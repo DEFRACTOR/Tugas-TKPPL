@@ -5,14 +5,40 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
     title Luna
     link(rel='stylesheet' type='text/css' href='build/build.css')
+    link(rel='stylesheet' type='text/css' href='build/style.css')
   body
     article
       section
         h1 Currency Converter
       section
-        h2
-          | Converter Online
-          h2 Converter Offline
+        h1
+          a(href='#3') Converter Online
+        h1
+          a(href='#5') Converter Offline
       section
-        h3 END OF CODE
-      script(src='build/build.js')
+        h2 Converter Online
+      section
+        h2 Jenis Mata Uang : 
+        select#C1
+          include matauang.html
+        h2 Nilai Mata Uang : 
+        input(type='number' min='0' max='10000000000' value='0')
+        h2 Target Mata Uang : 
+        select#C2
+          include matauang.html
+        input(type='submit' value='Convert')
+      section
+        h2 Converter Offline
+      section
+        h3 END OF FILE
+    script(src='build/jquery.min.js')
+    script.
+      $(document).ready(function(){
+      $("button").click(function(){
+      alert("This is an alert");
+      });
+      });
+      $(window).keypress(function(event){
+      alert("keyboard active");
+      });
+    script(src='build/build.js')

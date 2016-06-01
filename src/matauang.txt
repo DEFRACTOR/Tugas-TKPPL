@@ -1,0 +1,126 @@
+﻿Abbesinia,	Dollar
+Afghanistan,	Afgani
+Afrika	Selatan,	Rand
+Afrika	Tengah,	Franc
+Albanìa,	Lek
+Aljazair,	Dinar
+Amerìka,	Serikat	Dollar
+Angola,	Kwanza
+Argentina,	Peso
+Australia,	Dollar
+Austria,	Shilling
+Bangladesh,	Taka
+Belanda,	Gulden
+Belgia,	Franc
+Bolivia,	Boliviamus
+Brazil,	Cruzeiro
+Brunei	Darussalam,	Dollar
+Bulgaria,	Lev
+Chad,	Franc
+Canada,	Dollar
+Ceylon,	Rupes
+Chili,	Peso
+Cina,	Yuan
+Cekonama,	Koruna
+Denmark,	Krone
+Dominika,	Peso
+El	Savador,	Kolon
+Ethopia,	Birr
+Equador,	Sucrve
+Filipina,	Peso
+Finlandia,	Markka
+Ghana,	Cedi
+Guatemala,	Queizal
+Haiti,	Courde
+Hongaria,	Forint
+Hongkong,	Dollar
+Honduras,	Lempira
+India,	Rupee
+Indonesia,	Rupiah
+Inggris,	Pound	Sterling
+Irak,	Dinar
+Iran,	Real
+Irlandia,	Pound
+Israel,	Pound
+Islandia,	Krona
+Italia,	Lira
+Jamaika,	Dollar
+Jepang,	Yen
+Jerman,	Deutsche	Mark
+Kamboja,	Riel
+Kamerun,	Franc
+Kenya,	Shilling
+Kolombia,	Peso
+Kongo,	Franc
+Korea	Selatan,	Won
+Korea,	Utara	Won
+Kuba,	Peso
+Kuwait,	Dinar
+Laos,	New	Kip
+Libanon,	Pound
+Liberia,	Dollar
+Libya,	Dinar
+Luxemburg,	Frenc
+Malaysia,	Rìnggit
+Malvìnas,	Pound
+Maroko,	Dirham
+Mesir,	Pound
+Mexico,	Peso
+Monako,	Franc
+Mongolia,	Tugrik
+Mozambik,	Escudo
+Myanmar,	Kyat
+Namibia,	Rand
+Nepal,	Rupee
+Nikaragua,	Kordoba
+Nigerìa,	Naira
+Norwegia,	Kroon
+Oman,	Rial
+Palestina,	Dinar
+Pakistan,	Rupee
+Panama,	Balboa
+Papua,	Nugini	Kina
+Paraguay,	Guarani
+Perancis,	Franc
+Peru,	Sole
+Polandia,	zioty
+Portugal,	Escudo
+Qatar,	Riyal
+Rumania,	Leu
+Saudi,	Arabia	Riyal
+Senegal,	Franc
+Singapura,	Dollar
+Siprus,	Pound
+Srilanka,	Rupee
+Sudan,	Pound
+Suriah,	Pound
+Spanyol,	Peseta
+Suriname,	Guilder
+Swedia,	Kroon
+Swiss,	Franc
+Taiwan,	Dollar
+Tanzania,	Shilling
+Timor	Leste,	Dollar
+Thailand,	Bath
+Selandia	Baru,	Dollar
+Tunisia,	Dinar
+Turki,	Lira
+Uganda,	Shilling
+Uni	Emirat	Arab,	Dirham
+Uruguay,	Peso
+Vatikan,	Lira
+Venezuela,	Bolivar
+Vietnam,	Dong
+Yaman,	Imani
+Yordania,	Dinar
+Yunani,	Drachma
+Zaire,	Zaire
+Zambia,	Kwacha
+Zimbabwe,	Dollar
+Armenia,	Dram
+Azerbaijan,	Manat
+Kazakhstan,	Tenge
+Kirgystan,	Rubel
+Tajikistan,	Rouble
+Turkmenistan,	Manat
+Uzbekistan,	Som

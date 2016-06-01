@@ -5,20 +5,56 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Luna</title>
 		<link rel="stylesheet" type="text/css" href="build/build.css">
+		<link rel="stylesheet" type="text/css" href="build/style.css">
 	</head>
 	<body>
 		<article>
 			<section>
 				<h1>Currency Converter</h1>
 			</section>
+
 			<section>
-				<h2>Converter Online</h1>
-				<h2>Converter Offline</h2>
-			</section>
-			<section>
-				<h3>END OF CODE</h3>
+				<h1><a href="#3">Converter Online</a></h1>
+				<h1><a href="#5">Converter Offline</a></h1>
 			</section>
 
+			<section>
+				<h2>Converter Online</h2>
+			</section>
+
+			<section>
+				<h2>Jenis Mata Uang : </h2>
+				<select id="C1">
+					<include>matauang.html</include>
+				</select>
+				<h2>Nilai Mata Uang : </h2>
+				<input type="number" min="0" max="10000000000" value="0" />
+				<h2>Target Mata Uang : </h2>
+				<select id="C2">
+					<include>matauang.html</include>
+				</select>
+				<input type="submit" value="Convert"/>
+			</section>
+
+			<section>
+				<h2>Converter Offline</h2>
+			</section>
+
+			<section>
+				<h3>END OF FILE</h3>
+			</section>
+		</article>
+	<script src="build/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("button").click(function(){
+				alert("This is an alert");
+			});
+		});
+		$(window).keypress(function(event){
+			alert("keyboard active");
+		});
+	</script>
     <script src="build/build.js"></script>
   </body>
 </html>
