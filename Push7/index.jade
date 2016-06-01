@@ -26,7 +26,8 @@ html
             div.left
               textbox 1,150.00
             div.left
-              textbox Tax (%): 15%
+              textbox Tax (%): 
+              input#tax
             div.right
               textbox -20%
             div.center
@@ -40,7 +41,7 @@ html
             input.right#rResult(onclick="rClicked()" autocomplete="off")
           div.four
             p.left Discount (%)
-            p.right.red Additional Discount (%)
+            p#ad.right.red(oninput="changeTax()") Additional Discount (%)
             textbox#percent.left 0
             button.left -
             input.range(type="range" min="0" max="100" value="0" step="1" oninput="tipCalculate(this.value, 'bill')" onchange="tipCalculate(this.value, 'bill')" autocomplete="off")
@@ -202,6 +203,12 @@ html
             rResult.value = rResult.value.substr(0, rResult.value.length - 1);
         }
       }
+      function ChangeTax() {
+        var ad = document.getElementById('ad').innerHTML
+        var tax = document.getElementById('tax')
+        tax.innnerHTML = "Tax (%): " + ad + "%"
+      }
+      
       function Clear() {
         if(left == true) {
             lResult.value = ''
