@@ -1,0 +1,290 @@
+/* A) Default Calculator */
+.bespoke-parent {
+  background-image: url("../images/Web_Background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 160% auto;
+}
+.bespoke-slide {
+  background-image: url("../images/Dark_Purple_Metal.jpg");
+}
+.bespoke-active {
+  color: #fff;
+}
+div#default {
+  background: #202060;
+  border-radius: 10px;
+  margin: 0px auto;
+  width: 320px;
+  height: 260px;
+  box-shadow: 0px 5px #101030, 0px 10px 15px rgba(0,0,0,0.2);
+}
+div#result {
+  overflow: hidden;
+  color: #000;
+  background: #e0ffe0;
+  border-radius: 5px;
+  margin: 20px 20px 10px;
+  padding: 0px 10px;
+  width: 280px;
+  height: 40px;
+  font-size: 36px;
+  text-align: right;
+  box-shadow: inset 0px 5px #b0ccb0;
+}
+div#command {
+  background: transparent;
+  color: #000;
+  font-size: 24px;
+  float: right;
+  text-align: right;
+}
+div#keys {
+  width: 320px;
+  height: 145px;
+  padding: 0px 10px 15px;
+}
+.key {
+  position: relative;
+  float: left;
+  margin: 5px 10px;
+  width: 55px;
+  height: 25px;
+  color: #fff;
+  border-radius: 5px;
+  font: 12px;
+  line-height: 25px;
+  text-align: center;
+  top: 0px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.bWlarge {
+  width: 130px;
+}
+.bBlue {
+  background: #0080ff;
+  box-shadow: 0px 5px #004080;
+}
+.bCyan {
+  background: #008080;
+  box-shadow: 0px 5px #004040;
+}
+.bGray {
+  background: #808080;
+  box-shadow: 0px 5px #404040;
+}
+.bRed {
+  background: #f00;
+  box-shadow: 0px 5px #800000;
+}
+.bBlue:hover {
+  background: #00c0ff;
+  box-shadow: 0px 5px #0060c0;
+}
+.bCyan:hover {
+  background: #00c0c0;
+  box-shadow: 0px 5px #006060;
+}
+.bGray:hover {
+  background: #c0c0c0;
+  box-shadow: 0px 5px #606060;
+}
+.bRed:hover {
+  background: #ff4040;
+  box-shadow: 0px 5px #c03030;
+}
+.key:hover {
+  cursor: pointer;
+}
+.key:active {
+  box-shadow: 0px 0px;
+  top: 5px;
+}
+/* A) */
+/* B) Tip Calculator */
+div#tip {
+  margin: 0px auto;
+  width: 420px;
+  height: 285px;
+}
+div.settings {
+  margin: 0px auto;
+  width: 301px;
+  height: 40px;
+}
+div#btax {
+  width: 150px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #0bf;
+  border-radius: 5px 0px 0px 5px;
+}
+div#atax {
+  width: 150px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #0bf;
+  border-radius: 0px 5px 5px 0px;
+  position: relative;
+  left: -1px;
+}
+.selected {
+  background: #0bf;
+  border-color: #f0f0f0;
+  color: #f0f0f0;
+}
+div#tip div.board {
+  margin: 0px auto;
+  padding: 10px;
+  width: 301px;
+  height: 233px;
+  text-align: left;
+}
+div#tip #bill {
+  width: 80px;
+  height: 20px;
+  direction: rtl;
+  background: -webkit-linear-gradient(#60b0d0, #80d0f0);
+  background: linear-gradient(#60b0d0, #80d0f0);
+}
+div#tip .range {
+  width: 100px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+}
+div#tip #tax {
+  width: 100px;
+  height: 20px;
+  direction: rtl;
+  background: -webkit-linear-gradient(#60b0d0, #80d0f0);
+  background: linear-gradient(#60b0d0, #80d0f0);
+}
+div.board div.slider {
+  width: 210px;
+  height: 50px;
+  margin: 10px 0px;
+  float: left;
+}
+div#tip div.reset {
+  width: 60px;
+  height: 45px;
+  margin: 10px 0px;
+  background: -webkit-linear-gradient(#80c040, #c0f090);
+  background: linear-gradient(#80c040, #c0f090);
+  box-shadow: 0px 5px #a0d868;
+  color: #fff;
+  text-align: center;
+  line-height: 45px;
+  float: right;
+  position: relative;
+  top: 0px;
+}
+div#tip div.reset:hover {
+  background: -webkit-linear-gradient(#a0e060, #e0f090);
+  background: linear-gradient(#a0e060, #e0f090);
+  text-shadow: 0px 0px 5px #fff;
+  box-shadow: 0px 5px #c0e878;
+}
+div#tip div.reset:active {
+  box-shadow: 0px 0px;
+  top: 5px;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+div#tip div.info {
+  width: 281px;
+  height: 120px;
+  float: left;
+}
+div#tip div.null,
+div#tip div.bar {
+  margin: 5px;
+  width: 120px;
+  height: 20px;
+  text-align: left;
+  line-height: 20px;
+  float: left;
+}
+div#tip div.kol {
+  margin: 5px;
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  float: left;
+}
+/* B) */
+/* C) Percentage Calculator */
+div#percentage {
+  margin: 0px auto;
+  width: 420px;
+  height: 285px;
+}
+div#percentage div {
+  width: 300px;
+  height: 35px;
+  text-align: left;
+  line-height: 35px;
+  float: left;
+}
+div#percentage .reset {
+  width: 100px;
+  height: 30px;
+  margin: 0px 10px;
+  background: -webkit-linear-gradient(#4080c0, #90c0f0);
+  background: linear-gradient(#4080c0, #90c0f0);
+  border-radius: 5px;
+  box-shadow: 0px 5px #68a0d8;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  float: left;
+  position: relative;
+  top: 0px;
+}
+div#percentage .reset:hover {
+  background: -webkit-linear-gradient(#60a0e0, #90e0f0);
+  background: linear-gradient(#60a0e0, #90e0f0);
+  box-shadow: 0px 5px #78c0e8;
+  text-shadow: 0px 0px 5px #fff;
+  cursor: pointer;
+}
+div#percentage .reset:active {
+  box-shadow: 0px 0px;
+  top: 5px;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+div#percentage .board {
+  float: left;
+  width: 420px;
+  height: 30px;
+  margin: 5px 0px;
+  padding: 0px 10px;
+  line-height: 30px;
+  text-align: left;
+}
+div#percentage .info {
+  float: left;
+  width: 420px;
+  height: 30px;
+  margin-bottom: 5px;
+  padding: 0px 10px;
+  line-height: 30px;
+  text-align: left;
+}
+div#percentage .board input {
+  width: 60px;
+  height: 20px;
+  direction: rtl;
+  background: -webkit-linear-gradient(#60b0d0, #80d0f0);
+  background: linear-gradient(#60b0d0, #80d0f0);
+}
+/* C) */
