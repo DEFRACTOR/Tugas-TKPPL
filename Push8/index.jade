@@ -1,0 +1,263 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Finacial Calculator
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        h1 Financial Calculators
+        h3 Bespoke Version
+
+      section
+        h1 Welcome..
+        h2 Discount and Tax Calculator
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+
+      section
+        div.one
+          div.two
+            div.left
+              textbox 1,150.00
+            div.left
+              textbox#tax Tax (%): 
+            div.right
+              textbox#disc -20%
+            div.center
+              textbox.result 920.00
+            div.center
+              textbox.save Your save: 230.00
+          div.three 
+            p.left Price
+            p.right Tax (%)
+            input.left#lResult(onclick="lClicked()" oninput="changeDisc()" autocomplete="off")
+            input.right#rResult(onclick="rClicked()" oninput="changeTax()" autocomplete="off")
+          div.four
+            p.left Discount (%)
+            p.right.red() Additional Discount (%)
+            textbox#percent.left 0
+            button.left -
+            input.range(type="range" min="0" max="100" value="0" step="1" oninput="tipCalculate(this.value, 'bill')" onchange="tipCalculate(this.value, 'bill')" autocomplete="off")
+            button.right +
+            
+          div.five
+            div.key
+              button(onclick="AddDigit(7)") 7
+            div.key
+              button(onclick="AddDigit(8)") 8
+            div.key
+              button(onclick="AddDigit(9)") 9
+            div.key
+              button(onclick="Operator('÷')") ÷
+            div.key
+              button(onclick="Backspace()") ←
+            div.key
+              button(onclick="AddDigit(4)") 4
+            div.key
+              button(onclick="AddDigit(5)") 5
+            div.key
+              button(onclick="AddDigit(6)") 6
+            div.key
+              button(onclick="Operator('x')") x
+            div.key
+              button(onclick="Clear()") AC
+            div.key
+              button(onclick="AddDigit(1)") 1
+            div.key
+              button(onclick="AddDigit(2)") 2
+            div.key
+              button(onclick="AddDigit(3)") 3
+            div.key
+              button(onclick="Operator('-')") -
+            div.key
+              button %
+            div.key
+              button(onclick="Add('.')") .
+            div.key
+              button(onclick="AddDigit(0)") 0
+            div.key
+              button(onclick="Equal()") =
+            div.key
+              button(onclick="Operator('+')") +
+            div.key
+              button 0 
+          
+
+      section
+        h2 Responsive Slides
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
+
+      section
+        h2 Bullet List
+        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
+        ul
+          li Bullet 1
+          li Bullet 2
+          li Bullet 3
+
+      section
+        h2 Syntax Highlighting
+        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+        pre
+          code.language-javascript.
+            bespoke.from('article', [
+              classes(),
+              keys(),
+              touch(),
+              bullets('li, .bullet')
+            ]);
+
+      section(data-bespoke-hash='named-route')
+        h2 Named Route
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
+        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Emphatic Slide!
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
+
+      section
+        h2.bullet Just the beginning...
+        br
+        ul
+          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
+          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
+          li Edit JavaScript in <em>'src/scripts/main.js'</em>
+        br
+        ul
+          li
+            strong Enjoy! :)
+            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+
+    script(src='build/build.js')
+    script.
+      var lResult = document.getElementById("lResult");
+      var rResult =  document.getElementById("rResult");
+      var result = document.getElementById("result");
+      var right = false;
+      var left = false;
+      var operator = ['+','-','x','÷'];
+      var decimalAdded = false;
+      function Add(Key) {
+        if (!decimalAdded) {
+          result.value += Key
+          decimalAdded = true
+        }
+      }
+      function lClicked() {
+        right = false;
+        left = true;
+      }
+      function rClicked() {
+        left = false;
+        right = true;
+      }      
+      function AddDigit(Num) {
+        //left
+        if(left == true) {
+            if (Num === 0){
+              if (lResult.value === '' || lResult.value !== '0') {
+                lResult.value += Num
+              }
+            }
+            else {
+              if (lResult.value === '0') {
+                lResult.value = ''
+                lResult.value += Num
+              }
+              else { 
+                lResult.value += Num 
+              }
+            }
+          }              
+        //right
+        else {
+            if (Num === 0){
+              if (rResult.value === '' || rResult.value !== '0') {
+                rResult.value += Num
+              }
+            }
+            else {
+              if (rResult.value === '0') {
+                rResult.value = ''
+                rResult.value += Num
+              }
+              else { 
+                rResult.value += Num 
+              }
+            }
+          }              
+        }
+      function Backspace() {
+        if(left == true) {
+            lResult.value = lResult.value.substr(0, lResult.value.length - 1);
+        }
+        else if(right == true) {
+            rResult.value = rResult.value.substr(0, rResult.value.length - 1);
+        }
+      }
+      
+      function changeDisc() {
+        var adf = document.getElementById('percent').value
+        var discount = document.getElementById('disc')
+        discount.innerHTML = "Tax (%): " + adf + "%"
+      }
+      
+      function changeTax() {
+        var ad = document.getElementById('rResult').value
+        var taks = document.getElementById('tax')
+        taks.innerHTML = "Tax (%): " + ad + "%"
+      }
+      
+      function Clear() {
+        if(left == true) {
+            lResult.value = ''
+        }
+        else if(right == true) {
+            rResult.value = ''
+        }
+        operator = ''
+        decimalAdded = false
+      }
+      function Equal() {
+        var equation = result.value;
+        var lastChar = equation[equation.length - 1];
+        equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+        //if(operators.indexOf(lastChar) > -1 || lastChar == '.') {
+        //  equation = equation.replace(/.$/, '');
+        //}
+        result.value = eval(equation);
+      }
+      function Inverse() {
+        var res = result.innerHTML
+        res = res * -1
+        result.innerHTML = res
+      }     
+      function Operator(op) {
+        if (op === '+') {
+          result.value += "+"
+        }
+        else if (op === '-') {
+          result.value += "-"
+        }
+        else if (op === 'x') {
+          result.value += "x"
+        }
+        else if (op === '÷') {
+          result.value += "÷"
+        }
+        decimalAdded = false
+      }  
+      
+      function tipCalculate (slider, bill){
+        var percent = document.getElementById('percent');
+        percent.innerHTML = slider;
+      }
+    
+        
