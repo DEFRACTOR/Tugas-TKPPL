@@ -1,0 +1,246 @@
+// New to Stylus? Check out http://learnboost.github.io/stylus
+// Use modern CSS thanks to Autoprefixer: https://github.com/ai/autoprefixer
+
+// Import CSS from "node_modules" and "bower_components"
+// thanks to Stylus' "import css" and "paths" options
+
+@import 'prism/themes/prism-okaidia.css'
+// Check out "bower_components/prism/themes/" for available themes
+
+div .one
+{
+    background : white;
+    color : gray;
+}
+
+div .one h4
+{
+    font-family : arial;
+}
+
+div .two
+{
+    background : whitesmoke;
+    color : gray;
+    height : 160px;
+}
+
+div .two .left
+{
+    clear : both;
+    float : left;       
+    height : 20px;
+    margin : 10px 5px;
+    font-size : 16px;
+}
+
+div .two .left input#tax
+{
+    border : 1px solid black;
+    width : 60px;
+    padding : 5px;
+}
+
+
+div .two .left textbox#price
+{
+    text-decoration-line: line-through;
+}
+div .two .center
+{
+    clear : both;
+    margin : 0px;
+    font-size : 12px;
+}
+
+div .two .center textbox.result
+{
+    font-size : 30px;
+    font-weight : bold;
+}
+
+div .two .right
+{
+    clear : both;
+    float : right;
+    width : auto;
+    height : auto;
+    margin-top : -75px;
+    margin-right : 10px;
+    padding : 15px 5px;
+    font-size : 18px;
+    color : white;
+    background : red;
+    border : 1px solid red;
+    border-radius : 100%;
+}
+
+div .three
+{
+    background : white;
+    color : gray;
+    height : 50px;
+}
+
+div .four
+{
+    background : white;
+    color : gray;
+    margin-bottom : 20px;
+    height : 80px;   
+}
+
+div .three p.left, div .four p.left
+{
+    clear : both;
+    float : left;
+    width : auto;
+    margin : 0px 5px;
+    margin-bottom : 20px;
+    font-size : 12px;
+}
+
+div .four textbox.left
+{
+    clear : both;
+    float : left;
+    width : 50px;
+    height : 20px;
+    border : 1px white solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    margin : 0px 5px;
+    font-size : 12px;
+}
+
+div .four button.left
+{
+    float : left;
+    width : 50px;
+    height : 20px;
+    background : whitesmoke;
+    border-radius : 2px;
+    margin : 0px 2px;
+    font-size : 12px;
+    font-weight : bold;
+}
+
+div .three input.left, div .four input.left
+{
+    clear : both;
+    float : left;
+    border : 1px white solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    width : 200px;
+    height : 20px;
+    margin : 0px 5px;
+}
+
+div .three p.right
+{
+    float : right;
+    width : auto;
+    margin : 0px 30px;
+    margin-bottom : 20px;
+    font-size : 12px;
+}
+
+div .four p.right
+{
+    float : right;
+    width : auto;
+    margin : 0px;
+    font-size : 12px;
+}
+
+div .four p.red
+{
+    color : red;
+    margin-right : 5px;
+}
+
+div .three input.right, div .four input.right
+{
+    float : right;
+    border : 1px white solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    width : 100px;
+    height : 20px;
+    margin : 0px 5px;
+}
+
+div .four button.right
+{
+    float : right;
+    width : 50px;
+    height : 20px;
+    background : whitesmoke;
+    border-radius : 2px;
+    margin : 0px 2px;
+    font-size : 12px;
+    font-weight : bold;
+}
+
+div .five
+{
+    background :    whitesmoke;
+    color : gray;
+    margin : 0px auto;
+    margin-top : -10px;
+    margin-bottom : 10px;
+    padding : 2px 2px;
+    width : 160px;
+    height : 130px;
+    border : 1px solid black;
+}
+
+div .five .key
+{
+    float : left;
+    margin : 2px;
+    background : whitesmoke;
+    color : gray;
+    border : 1px solid black;
+}
+
+div .five .key button
+{
+    margin : 0px;
+    width : 25px;   
+    height : 25px;
+}
+
+div .three input.left:hover, div .three input.left:active, div .three input.left:focus, div .three input.right:hover, div .three input.right:active, div .three input.right:focus, div .four input.left:hover, div .four input.left:active, div .four input.left:focus, div .four input.right:hover, div .four input.right:active, div .four input.right:focus
+{
+    border-bottom-color : green;
+}
+
+.range {
+  width: 45%;
+  position : relative;
+  top : 12px;
+  left : -10px;
+}
+span {
+  width:200px;
+  padding:10px 5px;
+}
+input {
+  width:250px;
+  margin: 10px 0 10px 0;
+}
+
+h3 {
+  margin-left: 5px;
+}
+.amount-field {
+  line-height: 21px;
+  padding: 2px;
+  font-size: 16px;
+  color: #666;
+}
+.tip-amount {
+  color: #a62c29;
+}
