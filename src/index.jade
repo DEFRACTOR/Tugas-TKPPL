@@ -10,35 +10,59 @@ html
     article
       section
         h1 Currency Converter
-      section
-        h1
-          a(href='#3') Converter Online
-        h1
-          a(href='#5') Converter Offline
-      section
-        h2 Converter Online
-      section
-        h2 Jenis Mata Uang : 
+      section#C-On
+        h2 Currency Converter
+        label Currency 1 :
         select#C1
-          include matauang.html
-        h2 Nilai Mata Uang : 
+          include Konversi.html
+        label Nilai Mata Uang :
         input(type='number' min='0' max='10000000000' value='0')
-        h2 Target Mata Uang : 
+        label Currency 2 :
         select#C2
-          include matauang.html
+          include Konversi.html
+        p
+        input(type='submit' value='Exchange')
         input(type='submit' value='Convert')
       section
-        h2 Converter Offline
+        h3 Hasil Converter
+        #R-On none
       section
-        h3 END OF FILE
+        h3 CURRENCY LIST
+        #List
+          include Konversi.html
     script(src='build/jquery.min.js')
     script.
       $(document).ready(function(){
-      $("button").click(function(){
-      alert("This is an alert");
+      var moneyx = [];
+      var moneyy = [];
+      for(var i = 0; i < 53; i++){
+      var x,y;
+      x = $("#C1 option").eq(i).html();
+      y = "(" + x.split("	")[3] + ") " + x.split("	")[1];
+      $("#C1 option").eq(i).html(y);
+      $("#C2 option").eq(i).html(y);
+      moneyy.push($.trim(y));
+      moneyx.push($.trim(x));
+      }
+      $("#C-On input[value='Exchange']").click(function(){
+      var x = $("#C1").val();
+      var y = $("#C2").val();
+      $("#C1").val(y);
+      $("#C2").val(x);
       });
+      $("#C-On input[value='Convert']").click(function(){
+      var k, l, m, n, r, s, x, y, z;
+      x = $("#C1").val();		y = $("#C2").val();
+      z = $("#C-On input[type='number']").val();
+      k = $.inArray(x,moneyy);	l = moneyx[k];
+      m = l.split("	")[4];		r = z / m;
+      n = l.split("	")[1];		z = parseInt(z).toFixed(2) + " " + n;
+      k = $.inArray(y,moneyy);	l = moneyx[k];
+      m = l.split("	")[4];		r = r * m;
+      n = l.split("	")[1];		r = r.toFixed(2) +" "+ n;
+      var result = "<label>"+ x + ": </label>" + z + "<br><label>" + y + ": </label>" + r;
+      $("#R-On").html(result);
+      window.location.href="#3";
       });
-      $(window).keypress(function(event){
-      alert("keyboard active");
       });
     script(src='build/build.js')
