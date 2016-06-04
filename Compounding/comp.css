@@ -1,0 +1,36 @@
+#Judul {
+	color:rgb(200,0,0);
+	margin-bottom: -20px;
+}
+#SubJudul{
+	padding-left: 0px
+}
+#Main{
+	padding-left: 25px;
+}
+input {
+	margin-left: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;
+	width: 200px;
+	text-align: right;
+}
+#Explain{
+	float: left;
+	line-height: 34px;
+	font-weight: 800;
+	font-size: 18px;
+	text-align: right;
+}
+#Choice{
+	font-weight: 500;
+	font-size: 16px;
+	margin-left: 20px;
+}
+#Choice option{
+	font-size: 16px;
+}
+button{
+	width: 40px;
+	height: 30px;
+}
