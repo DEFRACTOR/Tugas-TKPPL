@@ -1,0 +1,178 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Finacial Calculator
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        h1 Financial Calculators
+        h3 Bespoke Version
+
+      section
+        h1 Welcome..
+        h2 Discount and Tax Calculator
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+
+      section
+        div.one
+          div.two
+            div.two2
+              div#aCircle
+                textbox#Scircle
+              div.right
+                textbox#Mcircle -30%
+            div.two1a
+              textbox#price
+            div.two1b
+              textbox#tax
+            div.two3
+              div.center
+                textbox#result 
+              div.center
+                textbox#save
+          div.three 
+            p.left Price
+            p.right Tax (%)
+            input.left#lResult(onclick="lClicked()" oninput="changePrice()" autocomplete="off")
+            input.right#rResult(value="20" maxlength="3" onclick="rClicked()" oninput="changeTax()" autocomplete="off")
+          div.four
+            p.left Discount (%)
+            p.right.red() Additional Discount (%)
+            input#percent.left(value="30" maxlength="3" oninput="tipCalculate(this.value)" autocomplete="off")
+            button.left -
+            input.range(type="range" min="0" max="100" value="30" step="1" oninput="tipCalculate(this.value)" onchange="tipCalculate(this.value)" autocomplete="off")
+            button.right +
+            input#apercent.right(value="0" maxlength="3"  oninput="changeAddDisc()" autocomplete="off")
+
+      section
+        h2 Responsive Slides
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
+
+      section
+        h2 Bullet List
+        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
+        ul
+          li Bullet 1
+          li Bullet 2
+          li Bullet 3
+
+      section
+        h2 Syntax Highlighting
+        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+        pre
+          code.language-javascript.
+            bespoke.from('article', [
+              classes(),
+              keys(),
+              touch(),
+              bullets('li, .bullet')
+            ]);
+
+      section(data-bespoke-hash='named-route')
+        h2 Named Route
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
+        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Emphatic Slide!
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
+
+      section
+        h2.bullet Just the beginning...
+        br
+        ul
+          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
+          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
+          li Edit JavaScript in <em>'src/scripts/main.js'</em>
+        br
+        ul
+          li
+            strong Enjoy! :)
+            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+
+    script(src='build/build.js')
+    script.
+      var lResult = document.getElementById("lResult");
+      var rResult =  document.getElementById("rResult");
+      var result = document.getElementById("result");
+      var right = false;
+      var left = false;
+      var disoutput = false;
+      function Add(Key) {
+        if (!decimalAdded) {
+          result.value += Key
+          decimalAdded = true
+        }
+      }
+      function lClicked() {
+        right = false;
+        left = true;
+      }
+      function rClicked() {
+        left = false;
+        right = true;
+      }
+      
+      function changeAddDisc() {
+        var adisc = document.getElementById('apercent').value
+        if (adisc > 100) { 
+            adisc = 100 
+            document.getElementById('apercent').value = 100
+        }
+        if (disoutput) { disoperate() }
+      }
+      
+      function changePrice() {
+        var adf = document.getElementById('lResult').value
+        disoutput = true
+        disoperate()
+      }
+      
+      function changeTax() {
+        var at = document.getElementById('rResult').value
+        if (at > 100) { 
+            at = 100 
+            document.getElementById('rResult').value = 100
+        }
+        if (disoutput) { disoperate() }
+      }
+           
+      function tipCalculate (slider){
+        var percent = document.getElementById('percent');
+        percent.value = slider;
+        if (disoutput) { disoperate() }
+      }
+    
+        function disoperate() {
+            var pricetag = document.getElementById('lResult').value
+            var taxtag = document.getElementById('rResult').value
+            var disctag = document.getElementById('percent').value
+            document.getElementById('price').innerHTML = pricetag
+            var adisctag = document.getElementById('apercent').value
+            var taxed = parseFloat(pricetag * taxtag / 100)
+            var priced = parseFloat(parseInt(pricetag) + taxed)
+            document.getElementById('tax').innerHTML = "Tax (%): " + taxtag + "%"
+            document.getElementById('Mcircle').innerHTML = "-" + disctag + "%"
+            var saved = parseFloat(priced * disctag / 100)
+            var resulted = parseFloat(parseFloat(priced) - saved)
+            if (adisctag != '') {
+                document.getElementById('aCircle').className = "disc"
+                if (adisctag == 0){
+                document.getElementById('Scircle').innerHTML = adisctag + "%"
+                }
+                else { 
+                document.getElementById('Scircle').innerHTML = "-" + adisctag + "%" 
+                }
+                resulted = parseFloat(resulted - (resulted * adisctag /100))
+            }
+            document.getElementById('result').innerHTML = resulted.toFixed(2)
+            document.getElementById('save').innerHTML = "Your save: " + saved.toFixed(2)
+            
+        }
