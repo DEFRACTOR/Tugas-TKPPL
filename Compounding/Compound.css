@@ -7,7 +7,7 @@
 .upperWrap{
 	background-color: rgba(100,200,100,0.2);
 	width: 800px;
-	height: 335px;
+	height: 345px;
 	padding-top: 0px;
 }
 h1{
@@ -65,7 +65,7 @@ h1{
 }
 .materiBawah{
 	width: 800px;
-	height: 35px;
+	height: 45px;
 	padding: 0px;
 	float: left;
 }
@@ -84,15 +84,13 @@ h1{
 .isiKiri{
 	float: left;
 	width: 400px;
-	height: 200px;
-	background-color: rgba(200,0,0,0.2);	
+	height: 150px;	
 	padding-top: 0px;
 }
 .isiKanan{
 	float: left;
 	width: 400px;
-	height: 200px;
-	background-color: rgba(0,0,200,0.2);
+	height: 150px;
 }
 .labelHasil{
 	width: 200px;
