@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Finacial Calculator</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-twilight.css">
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1>Finacial Calculator</h1>
+      </section>
+      <section>
+        <h2>Default Calculator</h2>
+        <div id="default">
+          <div id="result"></div>
+          <div id="keys">
+            <div onclick="Clear()" class="bBlue key">C</div>
+            <div onclick="Backspace()" class="bBlue key">←</div>
+            <div onclick="Inverse()" class="bBlue key">±</div>
+            <div onclick="Operator('÷')" class="bBlue key">÷</div>
+            <div onclick="AddDigit(7)" class="bGray key">7</div>
+            <div onclick="AddDigit(8)" class="bGray key">8</div>
+            <div onclick="AddDigit(9)" class="bGray key">9</div>
+            <div onclick="Operator('x')" class="bBlue key">x</div>
+            <div onclick="AddDigit(4)" class="bGray key">4</div>
+            <div onclick="AddDigit(5)" class="bGray key">5</div>
+            <div onclick="AddDigit(6)" class="bGray key">6</div>
+            <div onclick="Operator('-')" class="bBlue key">-</div>
+            <div onclick="AddDigit(1)" class="bGray key">1</div>
+            <div onclick="AddDigit(2)" class="bGray key">2</div>
+            <div onclick="AddDigit(3)" class="bGray key">3</div>
+            <div onclick="Operator('+')" class="bBlue key">+</div>
+            <div onclick="AddDigit(0)" class="bWlarge bGray key">0</div>
+            <div onclick="Add('.')" class="bGray key">.</div>
+            <div onclick="Equal()" class="bRed key">=</div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Tip Calculator</h2>
+        <div id="tip">
+          <div class="settings">
+            <div id="btax" onclick="tipOption('b')">Tip Before Tax</div>
+            <div id="atax" onclick="tipOption('a')">Tip After Tax</div>
+          </div>
+          <div class="board"><span>Bill</span>
+            <input id="bill" type="text" value="" oninput="Tinfo('bill')" autocomplete="off"><span>&nbsp;&nbsp;Tax(%)</span>
+            <input id="tax" type="text" value="" oninput="Tinfo('tax')" autocomplete="off"><br>
+            <div class="slider"><span>Tip (%)</span>
+              <input id="tipp" type="range" min="0" max="100" value="0" step="1" oninput="tipPercent(this.value)" onchange="tipPercent(this.value)" autocomplete="off" class="range"><span id="slideval1">0%</span><br><span>Split&nbsp;&#160;&nbsp;&#160;</span>
+              <input id="split" type="range" min="1" max="10" value="0" step="1" oninput="tipSplit(this.value)" onchange="tipSplit(this.value)" autocomplete="off" class="range"><span id="slideval2">1</span>
+            </div>
+            <div onclick="tipReset()" class="reset">RESET</div>
+            <div class="info">
+              <div class="null"></div>
+              <div class="kol">Total</div>
+              <div class="kol">Each</div><br>
+              <div class="bar">Tax Amount : </div>
+              <div id="A1" class="kol"></div>
+              <div id="B1" class="kol"></div><br>
+              <div class="bar">Tip Amount :</div>
+              <div id="A2" class="kol"></div>
+              <div id="B2" class="kol"></div><br>
+              <div class="bar">Payment :</div>
+              <div id="A3" class="kol"></div>
+              <div id="B3" class="kol"></div>
+            </div>
+          </div>
+          <div id="t" class="teks"></div>
+        </div>
+      </section>
+      <section>
+        <h2>Percentage Calculator</h2>
+        <div id="percentage">
+          <div>What is X% of Y?</div>
+          <div onclick="Reset(1)" class="reset">RESET</div>
+          <div class="board">
+            <input id="input1X" type="text" value="" oninput="Pinfo('1X')" autocomplete="off"><span>% of</span>
+            <input id="input1Y" type="text" value="" oninput="Pinfo('1Y')" autocomplete="off">
+          </div>
+          <div id="perc1" class="info"></div><br>
+          <div>What percent is X of Y?</div>
+          <div onclick="Reset(2)" class="reset">RESET</div>
+          <div class="board">
+            <input id="input2X" type="text" value="" oninput="Pinfo('2X')" autocomplete="off"><span>of</span>
+            <input id="input2Y" type="text" value="" oninput="Pinfo('2Y')" autocomplete="off">
+          </div>
+          <div id="perc2" class="info"></div><br>
+          <div>What's percent change X to Y?</div>
+          <div onclick="Reset(3)" class="reset">RESET</div>
+          <div class="board"><span>From </span>
+            <input id="input3X" type="text" value="" oninput="Pinfo('3X')" autocomplete="off"><span>to</span>
+            <input id="input3Y" type="text" value="" oninput="Pinfo('3Y')" autocomplete="off">
+          </div>
+          <div id="perc3" class="info"></div><br>
+        </div>
+      </section>
+      <section></section>
+    </article>
+    <script src="build/build.js"></script>
+    <!-- A) Basic Calculator-->
+    <script>
+      var result = document.getElementById("result")
+      var operator = ['+','-','x','÷'];
+      var operatorAdded = false;
+      var decimalAdded = false;
+      function Add(Key) {
+        if (!decimalAdded) {
+          result.innerHTML += Key
+          decimalAdded = true
+        }
+      }
+      function AddDigit(Num) {
+        if (Num === 0) {
+          if (result.innerHTML === '' || result.innerHTML !== '0') {
+            result.innerHTML += Num
+          }
+        }
+        else {
+          if (result.innerHTML === '0') {
+            result.innerHTML = ''
+            result.innerHTML += Num
+          }
+          else { 
+            result.innerHTML += Num 
+          }
+        }
+        operatorAdded = false 
+      }
+      function Backspace() {
+        result.innerHTML = result.innerHTML.substr(0, result.innerHTML.length - 1);
+      }
+      function Clear() {
+        result.innerHTML = ''
+        operator = ''
+        decimalAdded = false
+      }
+      function Equal() {
+        var equation = result.innerHTML;
+        var lastChar = equation[equation.length - 1];
+        equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+        //if(operators.indexOf(lastChar) > -1 || lastChar == '.') {
+        //  equation = equation.replace(/.$/, '');
+        //}
+        operatorAdded = false
+        result.innerHTML = eval(equation);
+      }
+      function Inverse() {
+        var res = result.innerHTML
+        res = res * -1
+        result.innerHTML = res
+      }
+      function Operator(op) {
+        if (!operatorAdded){
+          if (op === '+') {
+            result.innerHTML += "+"
+          }
+          else if (op === '-') {
+            result.innerHTML += "-"
+          }
+          else if (op === 'x') {
+            result.innerHTML += "x"
+          }
+          else if (op === '÷') {
+            result.innerHTML += "÷"
+          }
+          operatorAdded = true
+          decimalAdded = false
+        }
+      } 
+    </script>
+    <!-- A)-->
+    <!-- B) Tip Calculator-->
+    <script>
+      var bill = document.getElementById("bill")
+      var tax = document.getElementById("tax")
+      var tipp = document.getElementById("tipp")
+      var split = document.getElementById("split")
+      var b = document.getElementById("btax")
+      var a = document.getElementById("atax")
+      var after = false
+      var output = false
+      b.className = "selected"
+      var A1 = document.getElementById("A1")
+      var B1 = document.getElementById("B1")
+      var A2 = document.getElementById("A2")
+      var B2 = document.getElementById("B2")
+      var A3 = document.getElementById("A3")
+      var B3 = document.getElementById("B3")
+      
+      function tipOption(Opt) {
+        if (Opt === 'b' && a.className === "selected") {
+          b.className = "selected"
+          a.className = ""
+          after = false
+        }
+        
+        if (Opt === 'a' && b.className === "selected") {
+          a.className = "selected"
+          b.className = ""
+          after = true
+        }
+        if (output) {
+          operate()
+        }
+      }
+      
+      function tipPercent (slider) {
+        var slideval1 = document.getElementById('slideval1')
+        slideval1.innerHTML = slider + '%'  
+        tipp.value = document.getElementById('tipp').value
+        if (output) {
+          operate()
+        }
+      }
+      
+      function tipReset () {
+        bill.value = ''
+        tax.value = ''
+        tipp.value = 0
+        split.value = 1
+        var output = false
+        slideval1.innerHTML = 0 + '%'
+        slideval2.innerHTML = 1
+        A1.innerHTML = ""
+        B1.innerHTML = ""
+        A2.innerHTML = ""
+        B2.innerHTML = ""
+        A3.innerHTML = ""
+        B3.innerHTML = ""
+        document.getElementById('t').innerHTML = ""
+      }
+      
+      function tipSplit (slider) {
+        var slideval2 = document.getElementById('slideval2')
+        slideval2.innerHTML = slider  
+        split.value = document.getElementById('split').value
+        if (output) {
+          operate()
+        }
+      }
+      
+      function Tinfo (text) {
+        if (text === 'bill') {
+          bill.value = document.getElementById('bill').value
+          output = true
+          operate()
+        }
+        else {
+          tax.value = document.getElementById('tax').value
+          if (output) {
+            operate()
+          }
+        }
+      }
+      
+      function operate(){
+        var a = parseFloat(bill.value)
+        var b
+        if (tax.value == '') b = 0;
+        else b = parseFloat(tax.value)
+        var c
+        if (tipp.value == '') c = 0;
+        else c = parseFloat(tipp.value)
+        var d = parseFloat(split.value)
+        if (!after) { 
+          var hasil1 = a * b / 100
+          var hasil2 = hasil1 / d
+          var hasil3 = a * c / 100
+          var hasil4 = hasil3 / d
+          var hasil5 = a + hasil1 + hasil3
+          var hasil6 = hasil5 / d
+          A1.innerHTML = hasil1.toFixed(2)
+          B1.innerHTML = hasil2.toFixed(2)
+          A2.innerHTML = hasil3.toFixed(2)
+          B2.innerHTML = hasil4.toFixed(2)
+          A3.innerHTML = hasil5.toFixed(2)
+          B3.innerHTML = hasil6.toFixed(2)
+          
+          var total = a + hasil1
+          var grandtotal = Math.ceil(hasil5)
+          
+          while(grandtotal % d != 0) {
+            grandtotal++
+          }
+          
+          var newtip = grandtotal - total
+          
+          var t1 = (Math.ceil(B3.innerHTML)).toFixed(2)
+          var t2 = (newtip / d).toFixed(2)
+          var t3 = ((newtip / a) * 100).toFixed(2)
+          
+          document.getElementById('t').innerHTML = "Round each payment up : Each Pay is " + t1 + "; Each Tip is " + t2 + "; Tip percentage is " + t3 + "%"
+        }
+        else {
+          var hasil1 = a * b / 100
+          var hasil2 = hasil1 / d
+          var hasil3 = a * c / 100 + a * c / 100 * b / 100
+          var hasil4 = hasil3 / d
+          var hasil5 = a + hasil1 + hasil3
+          var hasil6 = hasil5 / d
+          A1.innerHTML = hasil1.toFixed(2)
+          B1.innerHTML = hasil2.toFixed(2)
+          A2.innerHTML = hasil3.toFixed(2)
+          B2.innerHTML = hasil4.toFixed(2)
+          A3.innerHTML = hasil5.toFixed(2)
+          B3.innerHTML = hasil6.toFixed(2)
+          
+          var total = a + hasil1
+          var grandtotal = Math.ceil(hasil5)
+          
+          while(grandtotal % d != 0) {
+            grandtotal++
+          }
+          
+          var newtip = grandtotal - total
+          
+          var t1 = (Math.ceil(B3.innerHTML)).toFixed(2)
+          var t2 = (newtip / d).toFixed(2)
+          var t3 = ((newtip / total) * 100).toFixed(2)
+          
+          document.getElementById('t').innerHTML = "Round each payment up : Each Pay is " + t1 + "; Each Tip is " + t2 + "; Tip percentage is " + t3 + "%"
+        }
+      }
+      
+      
+    </script>
+    <!-- B)-->
+    <!-- C) Percentage Calculator-->
+    <script>
+      var x1 = document.getElementById("input1X")
+      var y1 = document.getElementById("input1Y")
+      var x2 = document.getElementById("input2X")
+      var y2 = document.getElementById("input2Y")
+      var x3 = document.getElementById("input3X")
+      var y3 = document.getElementById("input3Y")
+      var info1 = document.getElementById("perc1")
+      var info2 = document.getElementById("perc2")
+      var info3 = document.getElementById("perc3")
+      
+      function Pinfo(ID) {
+        if (ID === '1X') {
+          x1.value = document.getElementById("input1X").value
+        }
+        else if (ID === '1Y') {
+          y1.value = document.getElementById("input1Y").value
+        }
+        else if (ID === '2X') {
+          x2.value = document.getElementById("input2X").value
+        }
+        else if (ID === '2Y') {
+          y2.value = document.getElementById("input2Y").value
+        }
+        else if (ID === '3X') {
+          x3.value = document.getElementById("input3X").value
+        }
+        else {
+          y3.value = document.getElementById("input3Y").value
+        }
+        if (x1.value.length != 0 && y1.value.length != 0) {
+          var hasil = x1.value / 100 * y1.value
+          info1.innerHTML = x1.value + "% of " + y1.value + " is: " + hasil.toFixed(2)
+        }
+        if (x2.value.length != 0 && y2.value.length != 0) {
+          var hasil = x2.value / y2.value * 100
+          info2.innerHTML = x1.value + " of " + y1.value + " is: " + hasil.toFixed(2) + "%"
+        }
+        if (x3.value.length != 0 && y3.value.length != 0) {
+          var hasil = (y3.value - x3.value) / x3.value * 100
+          info3.innerHTML = "From " + x1.value + " to " + y1.value + " is: " + hasil.toFixed(2) + "%"
+        }
+      }
+      
+      function Reset(Num) {
+        if (Num === 1) {
+          x1.value = ''
+          y1.value = ''
+          info1.innerHTML = ''
+        }
+        else if (Num === 2) {
+          x2.value = ''
+          y2.value = ''
+          info2.innerHTML = ''
+        }
+        else {
+          x3.value = ''
+          y3.value = ''
+          info3.innerHTML = ''
+        }
+      }
+    </script>
+    <!-- C)-->
+  </body>
+</html>
