@@ -106,7 +106,7 @@
 		for (var i = 0; i <= PMv; i++) {
 			bunga.push(i);
 		}
-		if(PA.value<=100000000000&&MD.value<=100000000000){
+
 		TPv = parseInt(PAv) + parseInt(PMv*MDv);
 		TP.value = TPv;
 		TP.innerHTML = 'Rp.'+ TP.value;
@@ -141,11 +141,10 @@
 		IAv = MVv - TPv;
 		IA.value = IAv;
 		IA.innerHTML = 'Rp.' + IA.value;
-	}
+
 		
 
-		if(PM.value!=0 && PM.value<=1000 && PA.value<=100000000000){
-		record.innerHTML = "";
+		if(PM.value!=0){
 		buatTabel(bunga, ArrMonth);
 		KET.innerHTML = "";
 		KET.innerHTML += "Calculation based on :<br>";
@@ -233,10 +232,6 @@
 	}
 	document.getElementById('del').onclick = function(){
     Hapus();
-	}
-
-	function Rup(money){
-		
 	}
 
 </script>

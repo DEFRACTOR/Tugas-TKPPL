@@ -91,6 +91,9 @@ h1{
 	float: left;
 	width: 400px;
 	height: 150px;
+
+	padding-left: 20px;
+	padding-top: 10px;
 }
 .labelHasil{
 	width: 200px;
@@ -103,4 +106,22 @@ h1{
 	float: left;
 	padding-top: 10px;
 	padding-left: 15px;
+}
+.well{
+	width: 360px;
+	height: 130px;
+	padding: 5px;
+	padding-left: 25px;
+	font-family: "Times New Roman", Times, serif;
+}
+.isiBawah{
+	float: left;
+	height: 180px;
+	width: 620px;
+	overflow: auto;
+	padding-left: 0px;
+	margin-left: 90px;
+}
+#record {
+	margin-top: 10px;
 }
