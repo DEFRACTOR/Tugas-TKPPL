@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Financial Calculator - Compound Interest</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="Compound.css">
+	<script src="bootstrap-3.3.6-dist/js/jquery.min.js"></script>
+	<script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="upperWrap">
+		<div class="topik">
+			<h1 class="text-center">Compounding Interest</h1>
+			<hr>
+		</div>
+		<div class="materi">
+			<div class="materiKiri">
+				<h4 class="text-right">Principal Ammount :</h4>
+				<h4 class="text-right">Monthly Deposit :</h4>
+				<h4 class="text-right">Period (Month) :</h4>
+				<h4 class="text-right">Annual Interest Rate :</h4>
+				<h4 class="text-right">Compounding :</h4>
+			</div>
+			<div class="materiKanan">
+				<form>
+					<input type="number" step="10000" min="0" max="1000000000" name="" value=0 id="PA"><br>
+					<input type="number" step="10000" min="0" name="" value=0 id="MD"><br>
+					<input type="number" step="1" min="0" name="" value=0 id="PM"><br>
+					<input type="number" step="1" min="0" name="" value=0 id="AIR"><br>
+					<select id="Choice">
+						<option value=1 selected>Monthly</option>
+						<option value=3>Quarterly</option>
+						<option value=6>Semianually</option>
+						<option value=12>Annually</option>
+						<option value=0>No Compound</option>
+					</select>
+				</form>
+			</div>
+			<div class="materiBawah">
+				<button class="btn btn-primary reset" id="del">Reset</button>
+				<button class="btn btn-primary count" id="count">Count</button>
+			</div>
+		</div>
+	</div>
+	<div class="lowerWrap">
+		<div class="isiKiri">
+			<div class="labelHasil" id="result">
+				<h4 class="text-right labhsl">Total Principle :</h4>
+				<h4 class="text-right labhsl">Interest Ammount :</h4>
+				<h4 class="text-right labhsl">Maturity Value :</h4>
+				<h4 class="text-right labhsl">APY :</h4>
+			</div>
+			<div class="angkaHasil">
+				<h4 class="text-left anghsl" id="TP">Rp.0</h4>
+				<h4 class="text-left anghsl" id="IA">Rp.0</h4>
+				<h4 class="text-left anghsl" id="MV">Rp.0</h4>
+				<h4 class="text-left anghsl" id="APY">0%</h4>
+			</div>
+		</div>
+		<div class="isiKanan">
+			<div class="well text-left" id="keterangan">
+			</div>
+		</div>
+		<div class="isiBawah" id="record">
+			
+		</div>
+	</div>
+</div>
+	
+
+
+
+<script type="text/javascript">
+	
+	var TP = document.getElementById('TP');
+	var IA = document.getElementById('IA');
+	var MV = document.getElementById('MV');
+	var APY = document.getElementById('APY');
+	var PA = document.getElementById('PA');
+	var MD = document.getElementById('MD');
+	var PM = document.getElementById('PM');
+	var AIR = document.getElementById('AIR');
+	var CHC = document.getElementById('Choice');
+	var KET = document.getElementById('keterangan');
+	var bunga = [];
+
+	function Hitung(){
+		
+		var PAv = PA.value;
+		var MDv = MD.value;
+		var PMv = PM.value;
+		var AIRv = AIR.value;
+		var CHCv = parseInt(CHC.value);
+		var TPv;
+		var IAv;
+		var MVv;
+		var APYv;
+		
+		var ArrMonth = [];
+		for (var i = 0; i <= PMv; i++) {
+			ArrMonth.push(i);
+		}
+		for (var i = 0; i <= PMv; i++) {
+			bunga.push(i);
+		}
+		if(PA.value<=100000000000&&MD.value<=100000000000){
+		TPv = parseInt(PAv) + parseInt(PMv*MDv);
+		TP.value = TPv;
+		TP.innerHTML = 'Rp.'+ TP.value;
+
+		APYv = AIRv;
+		APY.value = APYv;
+		APY.innerHTML = APY.value + '%';
+
+		for (var i = 0; i < ArrMonth.length; i++) {
+			if(i==0){
+				ArrMonth[i] = parseInt(PAv);
+				bunga[i] = ArrMonth[i]*(AIRv/12)/100;
+			}
+			else{
+				if(i%CHCv==0){
+				ArrMonth[i] = parseInt(ArrMonth[i-1]) + parseInt(MDv);
+				bunga[i] = ArrMonth[i]*(AIRv/12)/100;
+				ArrMonth[i] += bunga[i];
+				}
+				else{
+					bunga[i] = bunga[i-1];
+					ArrMonth[i] = parseInt(ArrMonth[i-1]) + parseInt(MDv) + bunga[i];
+				}
+			}
+			/*document.write('bulan : ' + i + ' adalah : ' + ArrMonth[i].toFixed(0) + '<br/>');*/	
+		}
+
+		MVv = parseInt(ArrMonth[ArrMonth.length-1]);
+		MV.value = MVv;
+		MV.innerHTML = 'Rp.' + MV.value;
+
+		IAv = MVv - TPv;
+		IA.value = IAv;
+		IA.innerHTML = 'Rp.' + IA.value;
+	}
+		
+
+		if(PM.value!=0 && PM.value<=1000 && PA.value<=100000000000){
+		record.innerHTML = "";
+		buatTabel(bunga, ArrMonth);
+		KET.innerHTML = "";
+		KET.innerHTML += "Calculation based on :<br>";
+		KET.innerHTML += "Principal Ammount : Rp." + PA.value + "<br>";
+		KET.innerHTML += "Monthly Deposit : Rp." + MD.value + "<br>";
+		KET.innerHTML += "Period : " + PM.value + " Month<br>";
+		KET.innerHTML += "Annual Interest Rate : " + AIR.value + "%<br>";
+		KET.innerHTML += "Compounding type : " + CHC.options[CHC.selectedIndex].text;
+		}
+		
+
+	}
+
+	function Hapus(){
+		PA.value = 0;
+		MD.value = 0;
+		PM.value = 0;
+		AIR.value = 0;
+		TP.value = 0;
+		TP.innerHTML = 'Rp.0';
+		IA.value = 0;
+		IA.innerHTML = 'Rp.0';
+		MV.value = 0;
+		MV.innerHTML = 'Rp.0';
+		APY.value = 0;
+		APY.innerHTML = '0%';
+		KET.innerHTML = "";
+		record.innerHTML = "";
+	}
+
+	function buatTabel(bunga, ArrMonth){
+		var record = document.getElementById("record");
+		var table = document.createElement("table");
+		table.className = "table table-hover";
+		var thead = document.createElement("thead");
+		var trh = document.createElement("tr");
+		for(var i=0;i<3;i++)
+		{
+			if(i==0){
+			var th = document.createElement("th");
+			th.innerHTML = "Month";
+			}
+			else if(i==1){
+			var th = document.createElement("th");
+			th.innerHTML = "Interest";
+			}
+			else if(i==2){
+			var th = document.createElement("th");
+			th.innerHTML = "Ammount";
+			}
+			trh.appendChild(th);
+		}
+		var tbody = document.createElement("tbody");
+		for (var i=0;i<parseInt(PM.value);i++)
+		{
+			var trb = document.createElement("tr");
+			for(var j=0;j<3;j++)
+			{
+				if(j==0){
+				var td = document.createElement("td");
+				td.innerHTML = i+1;
+				}
+				if(j==1){
+				var td = document.createElement("td");
+				td.innerHTML = bunga[i].toFixed(2);
+				}
+				if(j==2){
+				var td = document.createElement("td");
+				td.innerHTML = ArrMonth[i].toFixed(2);
+				}
+				trb.appendChild(td);
+			}
+			tbody.appendChild(trb);
+		}
+		
+		thead.appendChild(trh);	
+		table.appendChild(thead);
+		table.appendChild(tbody);
+		record.appendChild(table);
+
+	}
+	
+	document.getElementById('count').onclick = function(){
+    Hitung();
+	}
+	document.getElementById('del').onclick = function(){
+    Hapus();
+	}
+
+	function Rup(money){
+		
+	}
+
+</script>
+</body>
+</html>
