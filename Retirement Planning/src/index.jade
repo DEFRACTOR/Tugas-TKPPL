@@ -1,0 +1,221 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Financial Calculator
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        h1 Financial Calculator
+
+      section
+        table
+          tr.color1
+            td.left.lineHeight
+              label(for="monthlySave") Monthly Save
+            td.right.lineHeight
+              input(required='')#monthlySave(type="text" autocomplete="off")
+          tr.color2
+            td.left.lineHeight
+              label(for="annualReturn") Annual Return
+            td.right.lineHeight
+              input(required='')#annualReturn(type="text")
+          tr.color3
+            td.left.lineHeight
+              label(for="retirementAge") Retirement Age
+            td.right.lineHeight 
+              input(required='')#retirementAge(type="text")
+          tr.color4
+            td(colspan=2).lineHeight#colapse
+              button(onclick="Solve()") solve
+          tr.color5
+            td(colspan=2)
+              div#container
+                a#animate1.red
+                a#animate2.blue
+                a#animate3.green
+                a#animate4.orange
+                a#animate5.grey
+
+        div#mark
+          fieldset
+            legend keterangan
+            a.red &nbsp;
+            span 25 tahun
+            a.blue &nbsp;
+            span 30 tahun
+            a.green &nbsp;
+            span 35 tahun
+            a.orange &nbsp;
+            span 40 tahun
+            a.grey &nbsp;
+            span 45 tahun
+
+        div.error#retireError
+          p Kami menganggap anda mulai pada usia 25 tahun
+
+        div.error#valueError
+          p Input harus berupa angka & Input tidak boleh kosong
+
+        script.
+          var highest;
+
+          function Solve(){
+            var $monthlySave = document.getElementById('monthlySave').value;
+            var $annualReturn = document.getElementById('annualReturn').value;
+            var $retirementAge = document.getElementById('retirementAge').value;
+
+            if ($retirementAge <= 25){
+              RetireError();
+            } else {
+              GUI();
+            }
+          }
+
+          function Calculate($year){
+            var $monthlySave = parseInt(document.getElementById('monthlySave').value) * 12;
+            var $annualReturn = parseInt(document.getElementById('annualReturn').value) / 100;
+            var $retirementAge = parseInt(document.getElementById('retirementAge').value);
+            var bound = parseInt($retirementAge) - parseInt($year);
+            var $result = 0;
+            var i = 0;
+
+            while(i<bound){
+              if(i==bound-1){
+                $result += $monthlySave;
+              } else {
+                $result += ($monthlySave + $annualReturn * $monthlySave);
+              }
+              i++;
+            }
+            return $result;
+          }
+          function GUI(){
+            highest = Calculate(25);
+            //ClearAll
+            document.getElementById("animate1").style.width = 5 + 'px';
+            document.getElementById("animate2").style.width = 5 + 'px';
+            document.getElementById("animate3").style.width = 5 + 'px';
+            document.getElementById("animate4").style.width = 5 + 'px';
+            document.getElementById("animate5").style.width = 5 + 'px';
+
+            //Animation
+            if(Calculate(25)>0){
+              move1();
+            }
+            if(Calculate(30)>0){
+              move2();
+            }
+            if(Calculate(35)>0){
+              move3();
+            }
+            if(Calculate(40)>0){
+              move4();
+            }
+            if(Calculate(45)>0){
+              move5();
+            }
+            //Nominal show
+            show();
+          }
+          function move1(){
+            var elem = document.getElementById("animate1");   
+            var width = 5;
+            var id = setInterval(frame, 5);
+            function frame() {
+              if (width >= 100/(highest/Calculate(25))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function move2(){
+            var elem = document.getElementById("animate2");   
+            var width = 5;
+            elem.style.width = 0;
+            var id = setInterval(frame, 7.5);
+            function frame() {
+              if (width >= 100/(highest/Calculate(30))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          var usia3 = Calculate(35);
+          function move3(){
+            var elem = document.getElementById("animate3");   
+            var width = 5;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 100/(highest/Calculate(35))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function move4(){
+            var elem = document.getElementById("animate4");   
+            var width = 5;
+            var id = setInterval(frame, 12.5);
+            function frame() {
+              if (width >= 100/(highest/Calculate(40))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function move5(){
+            var elem = document.getElementById("animate5");   
+            var width = 5;
+            var id = setInterval(frame, 15);
+            function frame() {
+              if (width >= 100/(highest/Calculate(45))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function show(){
+            //declaration
+            var elem1 = document.getElementById("animate1");
+            var elem2 = document.getElementById("animate2");
+            var elem3 = document.getElementById("animate3");
+            var elem4 = document.getElementById("animate4");
+            var elem5 = document.getElementById("animate5");
+            //show nominal
+            elem1.innerHTML = Calculate(25);
+            elem2.innerHTML = Calculate(30);
+            elem3.innerHTML = Calculate(35);
+            elem4.innerHTML = Calculate(40);
+            elem5.innerHTML = Calculate(45);          
+          }
+
+          function RetireError() {
+            var x = document.getElementById("retireError");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+          }
+
+          function ValueError(){
+            var x = document.getElementById("valueError");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+          }
+
+    script(src='build/build.js')
