@@ -1,0 +1,187 @@
+// New to Stylus? Check out http://learnboost.github.io/stylus
+// Use modern CSS thanks to Autoprefixer: https://github.com/ai/autoprefixer
+
+// Import CSS from "node_modules" and "bower_components"
+// thanks to Stylus' "import css" and "paths" options
+
+@import 'prism/themes/prism-okaidia.css'
+// Check out "bower_components/prism/themes/" for available themes
+
+h1 {
+	color : green;
+}
+body, article, tr {
+	border : solid 1px;
+}
+article {
+	width : 100%;
+	padding : 0;
+}
+section {
+	padding : 100px;
+}
+table, tr {
+	display : block;
+}
+td{
+	display : inline-block;
+ 	text-align : center;
+}
+td.lineHeight{
+ 	line-height : 50px;
+}
+td.left, td.right {
+	height : 50px;
+}
+td.left {
+	width : 150px;
+}
+td.right {
+	width : 300px;
+}
+td label {
+	width : 100px;
+}
+.color1 {
+	background-color : rgba(204, 255, 204, 1);
+}
+.color2 {
+	background-color : rgba(153, 255, 153, 1);
+}
+.color3 {
+	background-color : rgba(102, 255, 102, 1);
+}
+.color4 {
+	background-color : rgba(0, 255, 0, 1);
+}
+.color5 {
+	background-color : rgba(51, 204, 51, 1);
+}
+td input {
+	width : 300px;
+	height : 48px;
+	position : relative;
+	top : -1.5px;
+	background-color : lightgrey;
+}
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+    width: 100%;
+}
+td button {
+	width : 400px;
+	height : 15px;
+}
+#colapse {
+	line-height : 0;
+}
+#container {
+  width: 400px;
+  height: 125px;
+  position: relative;
+  background: white;
+}
+#container a{
+	display : block;
+	color : black;
+}
+#container a:hover{
+	display : block;
+	color : white;
+}
+#animate1, #animate2, #animate3, #animate4, #animate5 {
+  width: 5px;
+  height: 25px;
+  position: relative;
+  text-align : center;
+}
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+.green {
+	background-color: green;
+}
+.orange {
+	background-color: orange;
+}
+.grey {
+	background-color: grey;
+}
+#retireError, #valueError{
+	opacity : 0.75;
+	visibility: hidden;
+  min-width: 250px;
+  margin-right: 25px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 25px;
+  font-size: 17px;
+}
+
+#retireError:hover, #valueError:hover{
+	opacity : 1;
+}
+
+.show {
+  visibility: visible !important;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+   from {bottom: 0; opacity: 0;}
+   to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+   from {bottom: 30px; opacity: 1;} 
+   to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+   from {bottom: 30px; opacity: 1;}
+   to {bottom: 0; opacity: 0;}
+}
+#mark fieldset {
+	height : 50px;
+	width : 400px;
+}
+#mark fieldset a {
+	width : 10px;
+	height : 10px;
+	border : 1px solid;
+}
+#mark fieldset span {
+	font-size : 10px;
+	font-weight : bolder;
+	margin-left : 5px;
+	margin-right : 10px;
+	position : relative;
+	top : -3px;
+}

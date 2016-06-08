@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Compound Interest</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="comp.css">
+	
+</head>
+<body>
+	<div id="Heading">
+		<h1 id="Judul">Financial Calculator</h1>
+		<h2 id="SubJudul">::For Compound Interest::</h2>
+	</div>
+	<div id="Main">
+		<div id="Explain" >
+			Principal ammount : <br>
+			Monthly Deposit : <br>
+			Period (month) : <br>
+			Annual Interest Rate : <br>
+			Compounding : <br>
+		</div>
+		<form>
+			<input type="number" step="10000" name="PrincAmount"><br>
+			<input type="number" step="10000" name="MonthDepo"><br>
+			<input type="number" step="10000" name="Period"><br>
+			<input type="number" step="10000" name="AnnualInterestRate"><br>
+			<select id="Choice">
+				<option>Daily</option>
+				<option>Weekly</option>
+				<option>Monthly</option>
+				<option>Quarterly</option>
+				<option>Semianually</option>
+				<option>Annually</option>
+				<option>No Compound</option>
+			</select>
+		</form>
+		<button onclick="getElementById('teks').innerHTML=teks"></button>
+		<p id="teks"></p>
+	</div>
+
+	<script type="text/javascript">
+		teks = "DENNY";
+	</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+.container{
+	background-color: rgba(100,100,100,0.1);
+	width: 800px;
+	height: 800px;
+	padding: 0px;
+}
+.upperWrap{
+	background-color: rgba(100,200,100,0.2);
+	width: 800px;
+	height: 345px;
+	padding-top: 0px;
+}
+h1{
+	padding: 10px;
+	margin: 0px;
+}
+.heading{
+	height: 80px;
+}
+.topik hr{
+	margin: 0px;
+	border-color: rgba(100,100,100,0.2);
+	border-width: 2px;
+}
+.topik{
+	height: 80px;
+}
+.materi{
+	height: 220px;
+}
+.materiKiri{
+	width: 320px;
+	height: 220px;
+	float: left;
+	padding: 0px;
+	padding-right: 10px; 
+	
+}
+.materiKiri h4{
+	padding: 5px;
+}
+.materiKanan{
+	width: 480px;
+	height: 220px;
+	float: left;
+	padding: 0px;
+		
+}
+.materiKanan input{
+	height: 30px;
+	width: 250px;
+	text-align: right;
+	font-size: 18px;
+	margin: 5px 0px 5px 10px;
+}
+.materiKanan form:first-child{
+	margin-top: 5px;
+}
+.materiKanan select{
+	height: 30px;
+	width: 250px;
+	text-align: right;
+	font-size: 18px;
+	margin: 5px 0px 5px 10px;
+}
+.materiBawah{
+	width: 800px;
+	height: 45px;
+	padding: 0px;
+	float: left;
+}
+.reset{
+	margin-left: 330px;
+}
+.tabel{
+	margin-left: 28px;
+}
+.count{
+	margin-left: 28px;
+}
+.lowerWrap{
+	height: 500px;
+}
+.isiKiri{
+	float: left;
+	width: 400px;
+	height: 150px;	
+	padding-top: 0px;
+}
+.isiKanan{
+	float: left;
+	width: 400px;
+	height: 150px;
+
+	padding-left: 20px;
+	padding-top: 10px;
+}
+.labelHasil{
+	width: 200px;
+	height: 200px;
+	padding-top: 10px;
+	float: left;
+}
+.angkaHasil{
+	width: 200px;
+	float: left;
+	padding-top: 10px;
+	padding-left: 15px;
+}
+.well{
+	width: 360px;
+	height: 130px;
+	padding: 5px;
+	padding-left: 25px;
+	font-family: "Times New Roman", Times, serif;
+}
+.isiBawah{
+	float: left;
+	height: 180px;
+	width: 620px;
+	overflow: auto;
+	padding-left: 0px;
+	margin-left: 90px;
+}
+#record {
+	margin-top: 10px;
+}

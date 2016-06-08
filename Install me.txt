@@ -1,0 +1,7 @@
+Complete Route Installations
+
+Gulp.js 	-> npm install -g gulp
+Gulp serve 	-> npm install gulp
+Bespoke		-> npm install -g generator-bespoke
+yo		-> npm install -g yo
+Bower		-> bower install
