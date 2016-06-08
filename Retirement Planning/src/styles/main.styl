@@ -65,17 +65,17 @@ td input {
 	background-color : lightgrey;
 }
 input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
 input[type=text]:focus {
     width: 100%;
@@ -101,25 +101,25 @@ td button {
 	display : block;
 	color : white;
 }
-#animate1, #animate2, #animate3, #animate4, #animate5{
+#animate1, #animate2, #animate3, #animate4, #animate5 {
   width: 5px;
   height: 25px;
   position: relative;
   text-align : center;
 }
-#animate1{
+.red {
 	background-color: red;
 }
-#animate2{
+.blue {
 	background-color: blue;
 }
-#animate3{
+.green {
 	background-color: green;
 }
-#animate4{
+.orange {
 	background-color: orange;
 }
-#animate5{
+.grey {
 	background-color: grey;
 }
 #retireError, #valueError{
@@ -144,27 +144,44 @@ td button {
 }
 
 .show {
-    visibility: visible !important;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  visibility: visible !important;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+   from {bottom: 0; opacity: 0;}
+   to {bottom: 30px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
+   from {bottom: 30px; opacity: 1;} 
+   to {bottom: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+   from {bottom: 30px; opacity: 1;}
+   to {bottom: 0; opacity: 0;}
+}
+#mark fieldset {
+	height : 50px;
+	width : 400px;
+}
+#mark fieldset a {
+	width : 10px;
+	height : 10px;
+	border : 1px solid;
+}
+#mark fieldset span {
+	font-size : 10px;
+	font-weight : bolder;
+	margin-left : 5px;
+	margin-right : 10px;
+	position : relative;
+	top : -3px;
 }
