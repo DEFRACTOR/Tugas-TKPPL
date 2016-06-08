@@ -1,0 +1,882 @@
+/* Kelvin */
+/* A) Default Calculator */
+.bespoke-parent
+    background-image : url("../images/Web_Background.jpg")
+    background-repeat : no-repeat
+    background-position : center 
+    background-attachment : fixed
+    background-size : 100%
+
+.bespoke-slide 
+	background-image :url("../images/Dark_Purple_Metal.jpg")
+
+.bespoke-active
+	color : white
+
+div#default
+	background : #202060
+	border-radius : 10px
+	margin : 0px auto
+	width : 320px
+	height : 260px
+	box-shadow : 0px 5px #101030, 0px 10px 15px rgba(0, 0, 0, 0.2);
+
+div#result
+	overflow: hidden;
+	color : black
+	background : #E0FFE0
+	border-radius : 5px
+	margin : 20px 20px 10px
+	padding : 0px 10px
+	width : 280px
+	height : 40px
+	font-size : 36px
+	text-align : right
+	direction = rtl
+	box-shadow: inset 0px 5px #B0CCB0;
+
+div#command
+	background : transparent
+	color : black
+	font-size : 24px
+	float : right
+	text-align : right
+	direction = rtl
+
+div#keys
+	width : 320px
+	height : 145px
+	padding : 0px 10px 15px
+
+.key
+	position: relative;
+	float : left
+	margin : 5px 10px
+	width : 55px
+	height : 25px
+	color : white
+	border-radius : 5px
+	font : 12px
+	line-height : 25px
+	text-align : center
+	top : 0px
+	transition: all 0.2s ease;
+	
+.bWlarge
+	width : 130px
+
+.bBlue
+	background : #0080ff
+	box-shadow : 0px 5px #004080
+
+.bCyan
+	background : #008080
+	box-shadow : 0px 5px #004040
+
+.bGray 
+	background : #808080
+	box-shadow : 0px 5px #404040
+
+.bRed
+	background : #ff0000
+	box-shadow : 0px 5px #800000
+
+.bBlue:hover
+	background : #00c0ff
+	box-shadow : 0px 5px #0060c0
+
+.bCyan:hover
+	background : #00C0C0
+	box-shadow : 0px 5px #006060
+
+.bGray:hover
+	background : #C0C0C0
+	box-shadow : 0px 5px #606060
+
+.bRed:hover
+	background : #ff4040
+	box-shadow : 0px 5px #C03030
+
+.key:hover
+	cursor : pointer
+
+.key:active
+	box-shadow : 0px 0px
+	top : 5px
+/* A) */
+
+/* B) Tip Calculator */
+div#tip
+	margin : 0px auto
+	width : 420px
+	height : 285px
+
+div.settings
+	margin : 0px auto
+	width : 301px
+	height : 40px
+
+div#btax
+	width : 150px
+	height : 30px
+	float : left
+	text-align : center
+	line-height : 30px
+	border : 1px solid #00BBFF
+	border-radius : 5px 0px 0px 5px
+
+div#atax
+	width : 150px
+	height : 30px
+	float : left
+	text-align : center
+	line-height : 30px
+	border : 1px solid #00BBFF
+	border-radius : 0px 5px 5px 0px
+	position : relative
+	left : -1px
+
+.selected
+	background : #00BBFF
+	border-color : #F0F0F0
+	color : #F0F0F0
+
+div#tip div.board
+	margin : 0px auto
+	padding : 10px
+	width : 301px
+	height : 233px
+	text-align : left
+
+div#tip #bill
+	width : 80px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0)
+
+div#tip .range
+	width : 100px
+	height : 20px
+	position : relative
+	top : 5px
+
+div#tip #tax
+	width : 100px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0)
+
+div.board div.slider
+	width : 210px
+	height : 50px
+	margin : 10px 0px
+	float : left
+
+div#tip div.reset
+	width : 60px
+	height : 45px
+	margin : 10px 0px
+	background : linear-gradient(#80C040, #C0F090)
+	box-shadow : 0px 5px #A0D868
+	color : white
+	text-align : center
+	line-height : 45px
+	float : right
+	position : relative
+	top : 0px
+
+div#tip div.reset:hover
+	background : linear-gradient(#A0E060, #E0F090)
+	text-shadow : 0px 0px 5px #FFFFFF
+	box-shadow : 0px 5px #C0E878
+
+div#tip div.reset:active
+	box-shadow : 0px 0px
+	top : 5px
+	transition: all 0.25s ease;
+
+div#tip div.info 
+	width : 281px
+	height : 120px
+	float : left
+
+div#tip div.null, div#tip div.bar
+	margin : 5px
+	width : 120px
+	height : 20px
+	text-align : left
+	line-height : 20px
+	float : left
+
+div#tip div.kol
+	margin : 5px
+	width : 60px
+	height : 20px
+	text-align : center
+	line-height : 20px
+	float : left
+
+/* B) */
+
+/* C) Percentage Calculator */
+div#percentage
+	margin : 0px auto
+	width : 420px
+	height : 285px
+
+div#percentage div
+	width : 300px
+	height : 35px
+	text-align : left
+	line-height : 35px
+	float : left
+
+div#percentage .reset 
+	width : 100px
+	height : 30px
+	margin : 0px 10px
+	background : linear-gradient(#4080C0, #90C0F0)
+	border-radius : 5px
+	box-shadow : 0px 5px #68A0D8 
+	text-align : center
+	line-height : 30px
+	color : #ffffff
+	float : left
+	position : relative
+	top : 0px
+
+div#percentage .reset:hover
+	background : linear-gradient(#60A0E0, #90E0F0);
+	box-shadow : 0px 5px #78C0E8 
+	text-shadow : 0px 0px 5px #ffffff
+	cursor : pointer
+
+div#percentage .reset:active
+	box-shadow : 0px 0px
+	top : 5px
+	transition: all 0.25s ease;
+
+div#percentage .board
+	float : left
+	width : 420px
+	height : 30px
+	margin : 5px 0px
+	padding : 0px 10px
+	line-height : 30px
+	text-align : left
+
+div#percentage .info
+	float : left
+	width : 420px
+	height : 30px
+	margin-bottom : 5px
+	padding : 0px 10px
+	line-height : 30px
+	text-align : left
+
+div#percentage .board input
+	width : 60px
+	height : 20px
+	direction : rtl
+	background : linear-gradient(#60B0D0,#80D0F0)
+	
+/* C) */
+/* Kelvin */
+
+/* Denny Tan */
+.container{
+	width: 400px;
+	height: 400px;
+	padding-top: 10px;
+}
+.upperWrap{
+	background-color: rgba(200,100,100,0.5);
+	width: 400px;
+	height: 180px;
+	padding-top: 0px;
+}
+h1{
+	padding: 5px;
+	margin: 0px;
+}
+.heading{
+	height: 40px;
+}
+.topik hr{
+	margin: 0px;
+	border-color: rgba(100,100,100,0.5);
+	border-width: 1px;
+}
+.topik{
+	height: 40px;
+}
+.materi{
+	height: 110px;
+}
+.materiKiri{
+	width: 160px;
+	height: 110px;
+	float: left;
+	padding: 0px;
+	padding-right: 5px; 
+}
+.materiKiri h5{
+	padding-top: 2px;
+}
+.materiKanan{
+	width: 240px;
+	height: 110px;
+	float: left;
+}
+.materiKanan input{
+	height: 15px;
+	width: 125px;
+	text-align: right;
+	font-size: 9px;
+	margin : 0px;
+	position : relative;
+	top : -6px;
+}
+.materiKanan select{
+	height: 15px;
+	width: 125px;
+	text-align: right;
+	font-size: 9px;
+	position : relative;
+	top : -6px;
+}
+.materiBawah{
+	width: 400px;
+	height: 22.5px;
+	padding: 0px;
+	float: left;
+}
+.reset{
+	margin-left: 165px;
+}
+.tabel{
+	margin-left: 14px;
+}
+.count{
+	margin-left: 14px;
+}
+.lowerWrap{
+	background-color: rgba(100,100,200,0.5);
+	height: 200px;
+}
+.isiKiri{
+	float: left;
+	width: 200px;
+	height: 75px;	
+	padding-top: 0px;
+}
+.isiKanan{
+	float: left;
+	width: 200px;
+	height: 85px;
+}
+.labelHasil{
+	width: 100px;
+	height: 100px;
+	padding-top: 5px;
+	float: left;
+}
+.angkaHasil{
+	width: 100px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 7.5px;
+}
+.well{
+	width: 180px;
+	height: 84px;
+	padding: 2px;
+	padding-left: 25px;
+	background-color : #6E6EDC
+	border : 2px solid #7878E0
+	font-family: "Times New Roman", Times, serif;
+	text-align : left;
+	font-size : 10px;
+	position : relative;
+	top : 5px;
+}	
+.isiBawah{
+	float: left;
+	height: 90px;
+	width: 310px;
+	overflow: auto;
+	padding-left: 0px;
+	margin-left: 45px;
+}
+#record {
+	margin-top: 10px;
+}
+#record th, #record td {
+	padding-right: 20px;
+}
+.labhsl{
+	margin-left : 5px;
+	text-align : left;
+	font-size : 10px;
+}
+.anghsl{
+	text-align : left;
+}
+.materiBawah button{
+	width : 48px
+	height : 28px
+	background-color : #4169E1;
+	border : 1px solid #4169E1;
+	border-radius : 8px
+	color : white
+	position : relative
+	top : -2px
+}
+/* Denny Tan */
+
+/* Alex */
+div.one
+{
+    background : khaki;
+}
+
+div.one h4
+{
+    font-family : arial;
+}
+
+div.two
+{
+    background : darkkhaki;
+    color : white;
+    height : 160px;
+}
+
+div.two1a
+{
+    float : left;       
+    height : 20px;
+    margin : 10px 5px;
+    font-size : 16px;
+}
+
+div.two1b
+{
+    clear : both;
+    float : left;
+    height : 20px;
+    margin : -20px 5px;
+    font-size : 16px;
+}
+
+div.two1a textbox#price
+{
+    text-decoration-line: line-through;
+}
+div.two3 .center
+{
+    clear : both;
+    margin : 0px;
+    font-size : 12px;
+    position : relative
+    top : 10px
+}
+
+div.two3 .center textbox#resultA
+{
+    font-size : 30px;
+    font-weight : bold;
+}
+
+div.two2 .right
+{
+    float : right;
+    width : 60px;
+    height : 60px;
+    margin-right : 10px;
+    text-align : center;
+    line-height : 60px
+    font-size : 16px;
+    color : white;
+    background : red;
+    border : 1px solid red;
+    border-radius : 100%;
+}
+
+#aCircle.disc {
+    float : right;
+    width : 40px;
+    height : 40px;
+    margin-right : 10px;
+    text-align : center;
+    line-height : 40px
+    font-size : 12px;
+    color : white;
+    background : red;
+    border : 1px solid red;
+    border-radius : 100%;
+}
+
+div.three
+{
+    background : khaki;
+    color : gray;
+    height : 50px;
+}
+
+div.four
+{
+    background : khaki;
+    color : gray;
+    margin-bottom : 20px;
+    height : 80px;   
+}
+
+div.three p.left, div.four p.left
+{	
+    clear : both;
+    float : left;
+    width : auto;
+    margin : 0px 5px;
+    margin-bottom : 20px;
+    font-size : 12px;
+}
+
+div.four input.left
+{
+	background-color : khaki;
+    clear : both;
+    float : left;
+    width : 40px;
+    height : 20px;
+    border : 1px khaki solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    margin : 0px 5px;
+    margin-bottom : 20px;
+    font-size : 12px;
+}
+
+div.four input.right
+{
+	background-color : khaki;
+    clear : both;
+    float : right;
+    width : 40px;
+    height : 20px;
+    border : 1px khaki solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    margin : 0px 5px;
+    margin-bottom : 20px;
+    font-size : 12px;
+    position : relative;
+    top : -43px
+}
+
+
+div.three input.left
+{
+	background-color : khaki;
+    clear : both;
+    float : left;
+    border : 1px khaki solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    width : 200px;
+    height : 20px;
+    margin : 0px 5px;
+}
+
+div.three p.right
+{
+    float : right;
+    width : auto;
+    margin : 0px 30px;
+    margin-bottom : 20px;
+    font-size : 12px;
+}
+
+div.four p.right
+{
+    float : right;
+    width : auto;
+    margin : 0px;
+    font-size : 12px;
+}
+
+div.four p.red
+{
+    color : red;
+    margin-right : 5px;
+}
+
+div.three input.right
+{
+	background-color : khaki;
+    float : right;
+    border : 1px khaki solid;
+    border-bottom-color : gray;
+    border-radius : 5px;
+    width : 100px;
+    height : 20px;
+    margin : 0px 5px;
+}
+
+div.three input.left:hover, div.three input.left:active, div.three input.left:focus, div.three input.right:hover, div.three input.right:active, div.three input.right:focus, div.four input.left:hover, div.four input.left:active, div.four input.left:focus, div.four input.right:hover, div.four input.right:active, div.four input.right:focus
+{
+    border-bottom-color : green;
+}
+
+div.four .range {
+  width: 60%;
+  background-color : khaki;
+  position : relative;
+  top : 24px;
+  left : -40px;
+}
+
+h3 {
+  margin-left: 5px;
+}
+.amount-field {
+  line-height: 21px;
+  padding: 2px;
+  font-size: 16px;
+  color: #666;
+}
+.tip-amount {
+  color: #a62c29;
+}
+.titleA {
+  background-color:goldenrod;
+ }
+/* Alex */
+
+/* Hendra */
+#C-On div
+  padding : 5px
+#C-On div.conv
+  width : 400px
+  height : 110px
+  background-color : rgba(32, 144, 255, 0.5)
+#C-On label
+  float : left
+  font-size : 16px
+#C-On input, #C-On select {
+  width : 200px
+  background : linear-gradient(#2090FF,#00FF80);
+  border : 1px #10C7C1 solid
+  padding : 1px
+  float: right
+}
+#C-On div.convi {
+  padding : 0px 40px 0px 0px;
+  clear : both;
+  width : 400px;
+  position : relative
+  top : 2px
+} 
+#C-On .submit {
+  float : right;
+  width : initial;
+  border-radius : 5px
+  margin : 5px
+}
+#C-On div.res {
+  width : 400px
+  height : 140px
+  background-color : rgba(0, 255, 128, 0.5)
+}
+#C-On div.res h3 {
+	clear : both;
+	color : white;
+}
+/* Hendra */
+
+/* William Tansil */
+body, article, tr {
+	border : solid 1px;
+}
+article {
+	width : 100%;
+	padding : 0;
+}
+table, tr {
+	display : block;
+}
+td{
+	display : inline-block;
+ 	text-align : center;
+}
+td.lineHeight{
+ 	line-height : 50px;
+}
+td.left, td.right {
+	height : 50px;
+}
+td.left {
+	width : 150px;
+}
+td.right {
+	width : 300px;
+}
+td label {
+	width : 100px;
+}
+.color1 {
+	background-color : rgba(192, 255, 192, 1);
+}
+.color2 {
+	background-color : rgba(128, 255, 128, 1);
+}
+.color3 {
+	background-color : rgba(64, 255, 64, 1);
+}
+.color4 {
+	background-color : rgba(0, 255, 0, 1);
+}
+.color5 {
+	background-color : rgba(32, 204, 32, 1);
+}
+td input {
+	width : 300px;
+	height : 48px;
+	position : relative;
+	top : -1px;
+	background-color : lightgrey;
+}
+input#monthlySave, input#annualReturn, input#retirementAge {
+	position : relative;
+	top : 0.5px;	
+}
+
+td button {
+	font-size : 14px;
+	line-height : 5px;
+	position : relative;
+	top : -2px;
+}
+
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+    width: 100%;
+}
+td button {
+	width : 400px;
+	height : 15px;
+}
+#colapse {
+	line-height : 0;
+}
+#container {
+  width: 400px;
+  height: 125px;
+  position: relative;
+  background: white;
+}
+#container a{
+	display : block;
+	color : black;
+}
+#container a:hover{
+	display : block;
+	color : white;
+}
+#animate1, #animate2, #animate3, #animate4, #animate5 {
+  width: 5px;
+  height: 25px;
+  position: relative;
+  text-align : center;
+}
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+.green {
+	background-color: green;
+}
+.orange {
+	background-color: orange;
+}
+.grey {
+	background-color: grey;
+}
+#retireError, #valueError{
+	opacity : 0.75;
+	visibility: hidden;
+  min-width: 250px;
+  background-color: black;
+  color: #fff;
+  text-align: left;
+  border-radius: 2px;
+  padding: 0px;
+  position: fixed;
+  z-index: 1;
+  bottom: 25px;
+  font-size: 16px;
+}
+
+#retireError:hover, #valueError:hover{
+	opacity : 1;
+}
+
+.show {
+  visibility: visible !important;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  position : relative;
+  top : 500px;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+   from {bottom: 0; opacity: 0;}
+   to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+   from {bottom: 30px; opacity: 1;} 
+   to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+   from {bottom: 30px; opacity: 1;}
+   to {bottom: 0; opacity: 0;}
+}
+#mark fieldset {
+	height : 50px;
+	width : 400px;
+}
+#mark fieldset a {
+	width : 10px;
+	height : 10px;
+	border : 1px solid;
+}
+#mark fieldset span {
+	font-size : 10px;
+	font-weight : bolder;
+	margin-left : 5px;
+	margin-right : 10px;
+	position : relative;
+	top : -3px;
+}
+/* William Tansil */

@@ -1,0 +1,1093 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Finacial Calculator
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+      section
+        h1 Finacial Calculator
+      section
+        h2 Default Calculator
+        div#default
+          div#result
+          div#keys
+            div.bBlue.key(onclick = "Clear()") C
+            div.bBlue.key(onclick = "Backspace()") ←
+            div.bBlue.key(onclick = "Inverse()") ±
+            div.bBlue.key(onclick = "Operator('÷')") ÷
+            div.bGray.key(onclick = "AddDigit(7)") 7
+            div.bGray.key(onclick = "AddDigit(8)") 8
+            div.bGray.key(onclick = "AddDigit(9)") 9
+            div.bBlue.key(onclick = "Operator('x')") x
+            div.bGray.key(onclick = "AddDigit(4)") 4
+            div.bGray.key(onclick = "AddDigit(5)") 5
+            div.bGray.key(onclick = "AddDigit(6)") 6
+            div.bBlue.key(onclick = "Operator('-')") -
+            div.bGray.key(onclick = "AddDigit(1)") 1
+            div.bGray.key(onclick = "AddDigit(2)") 2
+            div.bGray.key(onclick = "AddDigit(3)") 3
+            div.bBlue.key(onclick = "Operator('+')") +
+            div.bWlarge.bGray.key(onclick = "AddDigit(0)") 0
+            div.bGray.key(onclick = "Add('.')") .
+            div.bRed.key(onclick = "Equal()") =
+      section
+        h2 Tip Calculator
+        div#tip
+          div.settings
+            div#btax(onclick="tipOption('b')") Tip Before Tax
+            div#atax(onclick="tipOption('a')") Tip After Tax
+          div.board
+            span Bill
+            input#bill(type = "text" value = '' oninput="Tinfo('bill')" autocomplete='off') 
+            span &nbsp;&nbsp;Tax(%)
+            input#tax(type = "text" value = '' oninput="Tinfo('tax')" autocomplete='off')
+            br
+            div.slider
+              span Tip (%)
+              input#tipp.range(type="range" min="0" max="100" value="0" step="1" oninput="tipPercent(this.value)" onchange="tipPercent(this.value)" autocomplete='off')
+              span#slideval1 0%
+              br
+              span Split&nbsp;&#160;&nbsp;&#160;
+              input#split.range(type="range" min="1" max="10" value="0" step="1" oninput="tipSplit(this.value)" onchange="tipSplit(this.value)" autocomplete='off')
+              span#slideval2 1
+            div.reset(onclick="tipReset()") RESET
+            div.info
+              div.null
+              div.kol Total
+              div.kol Each
+              br
+              div.bar Tax Amount : 
+              div#A1.kol 
+              div#B1.kol 
+              br
+              div.bar Tip Amount :
+              div#A2.kol 
+              div#B2.kol 
+              br
+              div.bar Payment :
+              div#A3.kol 
+              div#B3.kol
+          div#t.teks 
+      section
+        h2 Percentage Calculator
+        div#percentage
+          div What is X% of Y?
+          div.reset(onclick = "Reset(1)") RESET
+          div.board 
+            input#input1X(type = "text" value = '' oninput="Pinfo('1X')" autocomplete='off')
+            span % of
+            input#input1Y(type = "text" value = '' oninput="Pinfo('1Y')" autocomplete='off')
+          div.info#perc1 
+          br
+          div What percent is X of Y?
+          div.reset(onclick = "Reset(2)") RESET
+          div.board
+            input#input2X(type = "text" value = '' oninput="Pinfo('2X')" autocomplete='off')
+            span of
+            input#input2Y(type = "text" value = '' oninput="Pinfo('2Y')" autocomplete='off')
+          div.info#perc2 
+          br
+          div What's percent change X to Y?
+          div.reset(onclick = "Reset(3)") RESET
+          div.board 
+            span From 
+            input#input3X(type = "text" value = '' oninput="Pinfo('3X')" autocomplete='off')
+            span to
+            input#input3Y(type = "text" value = '' oninput="Pinfo('3Y')" autocomplete='off')
+          div.info#perc3 
+          br
+      section
+        div.container
+          div.upperWrap
+            div.topik
+              h3.text-center(style="color:white") Compounding Interest
+              hr
+            div.materi
+              div.materiKiri
+                h5 Principal Ammount :
+                h5 Monthly Deposit :
+                h5 Period (Month) :
+                h5 Annual Interest Rate :
+                h5 Compounding :
+              div.materiKanan
+                form
+                  input#PA(type="number" step="10000" min="0" max="1000000000" name="" value=0 autocomplete="off")
+                  br
+                  input#MD(type="number" step="10000" min="0" name="" value=0 autocomplete="off")
+                  br
+                  input#PM(type="number" step="1" min="0" name="" value=0 autocomplete="off")
+                  br
+                  input#AIR(type="number" step="1" min="0" name="" value=0 autocomplete="off")
+                  br
+                  select#Choice
+                    option(value=1) Monthly
+                    option(value=3) Quarterly
+                    option(value=6) Semianually
+                    option(value=12) Annually 
+                    option(value=0) No Compound 
+              div.materiBawah
+                button#del.btn.btn-primary.reset Reset
+                button#count.btn.btn-primary.count Count 
+          div.lowerWrap
+            div.isiKiri
+              div#resulted.labelHasil
+                h6.labhsl Total Principle :
+                h6.labhsl Interest Ammount :
+                h6.labhsl Maturity Value :
+                h6.labhsl APY :
+              div.angkaHasil
+                h6#TP.anghsl Rp.0
+                h6#IA.anghsl Rp.0
+                h6#MV.anghsl Rp.0
+                h6#APY.anghsl 0%
+            div.isiKanan
+              div#keterangan.well
+            div#record.isiBawah 
+      section
+        div.one
+          div.two
+            div.titleA Discount & Tax Calculator
+            div.two2
+              div#aCircle
+                textbox#Scircle
+              div.right
+                textbox#Mcircle -30%
+            div.two1a
+              textbox#price
+            div.two1b
+              textbox#taxA
+            div.two3
+              div.center
+                textbox#resultA
+              div.center
+                textbox#save
+          div.three 
+            p.left Price
+            p.right Tax (%)
+            input.left#lResult(onclick="lClicked()" oninput="changePrice()" autocomplete="off")
+            input.right#rResult(value="20" maxlength="3" onclick="rClicked()" oninput="changeTax()" autocomplete="off")
+          div.four
+            p.left Discount (%)
+            p.right.red() Additional Discount (%)
+            input#percent.left(value="30" maxlength="3" oninput="tipCalculate(this.value)" autocomplete="off")
+            input.range(type="range" min="0" max="100" value="30" step="1" oninput="tipCalculate(this.value)" onchange="tipCalculate(this.value)" autocomplete="off")
+            input#apercent.right(value="0" maxlength="3"  oninput="changeAddDisc()" autocomplete="off")
+      section#C-On
+        h2 Currency Converter
+        div.conv
+          label Currency 1 :
+          select#C1
+            option  Argentina Peso ARS 977.6300 0.001023  
+            option  Australian Dollar AUD 9918.400 0.000101  
+            option  Bahraini Dinar BHD 36255.28 0.000028  
+            option  Botswana Pula BWP 1217.700 0.000821  
+            option  Brazilian Real BRL 3819.770 0.000262  
+            option  British Pound GBP 19726.51 0.000051  
+            option  Bruneinan Dollar BND 9927.280 0.000101  
+            option  Bulgarian Lev BGN 7798.330 0.000128  
+            option  Canadian Dollar CAD 10452.87 0.000096  
+            option  Chilean Peso CLP 19.76000 0.050613  
+            option  Chinese Yuan CNY 2075.250 0.000482  
+            option  Colombian Peso COP 4.420000 0.226124  
+            option  Croatian Kuna HRK 2030.680 0.000492  
+            option  Czech Koruna CZK 564.4000 0.001772  
+            option  Danish Krone DKK 2050.740 0.000488  
+            option  Emirati Dirham AED 3721.110 0.000269  
+            option  Europe Euro EUR 15253.28 0.000066  
+            option  Hong kong Dollar HKD 1759.190 0.000568  
+            option  Hungarian Forint HUF 48.55000 0.020599  
+            option  Icelandic Krona ISK 109.7300 0.009113  
+            option  Indian Rupee INR 202.6900 0.004934  
+            option  Indonesian Rupiah IND 1.000000 1.000000  
+            option  Israeli Shekel ILS 3547.050 0.000282  
+            option  Japanese Yen JPY 124.9700 0.008002  
+            option  Kuwaiti Dinar KWD 45223.17 0.000022  
+            option  Libyan Dinar LYD 9959.920 0.000100  
+            option  Lithuanian Litas LTL 4417.660 0.000226  
+            option  Malaysian Ringgit MYR 3288.790 0.000304  
+            option  Mauritian Rupee MUR 385.5600 0.002594  
+            option  Mexican Peso MXN 738.4500 0.001354  
+            option  Napalese Rupee NPR 126.9400 0.007878  
+            option  New Zealand Dollar NZD 9300.390 0.000108  
+            option  Norwegian Krone NOK 1638.570 0.000610  
+            option  Omani Rial OMR 35501.83 0.000028  
+            option  Pakistani Rupee PKR 130.3500 0.007672  
+            option  Philippine Peso PHP 293.1500 0.003411  
+            option  Polish Zloty PLN 3469.800 0.000288  
+            option  Qatari Riyal QAR 3754.850 0.000266  
+            option  Romanian New Leu RON 3377.360 0.000296  
+            option  Russian Ruble RUB 204.0800 0.004900  
+            option  Saudi Arabia Riyal SAR 3644.960 0.000274  
+            option  Singapore Dollar SGD 9927.280 0.000101  
+            option  SouthAfrica Rupee ZAR 872.3200 0.001146  
+            option  SotuhKorean Won KRW 11.46000 0.087225  
+            option  Sri Lankan Rupee LKR 92.26000 0.010839  
+            option  Sweden Krona SEK 1642.130 0.000609  
+            option  Swiss Franc CHF 13813.79 0.000072  
+            option  Taiwan Dollar TWD 419.3000 0.002385  
+            option  Thai Baht THB 383.2500 0.002609  
+            option  Trinidadian Dollar TTD 2057.060 0.000486  
+            option  Turkish Lira TRY 4634.190 0.000216  
+            option  USA Dollar USD 13668.21 0.000073  
+            option  Venezuelan Bolivar VEF 1373.720 0.000728  
+
+          br
+          label Nilai Mata Uang :
+          input(type="number" min="0" max="10000000000" value="0" autocomplete="off")
+          br
+          label Currency 2 :
+          select#C2
+            option  Argentina Peso ARS 977.6300 0.001023  
+            option  Australian Dollar AUD 9918.400 0.000101  
+            option  Bahraini Dinar BHD 36255.28 0.000028  
+            option  Botswana Pula BWP 1217.700 0.000821  
+            option  Brazilian Real BRL 3819.770 0.000262  
+            option  British Pound GBP 19726.51 0.000051  
+            option  Bruneinan Dollar BND 9927.280 0.000101  
+            option  Bulgarian Lev BGN 7798.330 0.000128  
+            option  Canadian Dollar CAD 10452.87 0.000096  
+            option  Chilean Peso CLP 19.76000 0.050613  
+            option  Chinese Yuan CNY 2075.250 0.000482  
+            option  Colombian Peso COP 4.420000 0.226124  
+            option  Croatian Kuna HRK 2030.680 0.000492  
+            option  Czech Koruna CZK 564.4000 0.001772  
+            option  Danish Krone DKK 2050.740 0.000488  
+            option  Emirati Dirham AED 3721.110 0.000269  
+            option  Europe Euro EUR 15253.28 0.000066  
+            option  Hong kong Dollar HKD 1759.190 0.000568  
+            option  Hungarian Forint HUF 48.55000 0.020599  
+            option  Icelandic Krona ISK 109.7300 0.009113  
+            option  Indian Rupee INR 202.6900 0.004934  
+            option  Indonesian Rupiah IND 1.000000 1.000000  
+            option  Israeli Shekel ILS 3547.050 0.000282  
+            option  Japanese Yen JPY 124.9700 0.008002  
+            option  Kuwaiti Dinar KWD 45223.17 0.000022  
+            option  Libyan Dinar LYD 9959.920 0.000100  
+            option  Lithuanian Litas LTL 4417.660 0.000226  
+            option  Malaysian Ringgit MYR 3288.790 0.000304  
+            option  Mauritian Rupee MUR 385.5600 0.002594  
+            option  Mexican Peso MXN 738.4500 0.001354  
+            option  Napalese Rupee NPR 126.9400 0.007878  
+            option  New Zealand Dollar NZD 9300.390 0.000108  
+            option  Norwegian Krone NOK 1638.570 0.000610  
+            option  Omani Rial OMR 35501.83 0.000028  
+            option  Pakistani Rupee PKR 130.3500 0.007672  
+            option  Philippine Peso PHP 293.1500 0.003411  
+            option  Polish Zloty PLN 3469.800 0.000288  
+            option  Qatari Riyal QAR 3754.850 0.000266  
+            option  Romanian New Leu RON 3377.360 0.000296  
+            option  Russian Ruble RUB 204.0800 0.004900  
+            option  Saudi Arabia Riyal SAR 3644.960 0.000274  
+            option  Singapore Dollar SGD 9927.280 0.000101  
+            option  SouthAfrica Rupee ZAR 872.3200 0.001146  
+            option  SotuhKorean Won KRW 11.46000 0.087225  
+            option  Sri Lankan Rupee LKR 92.26000 0.010839  
+            option  Sweden Krona SEK 1642.130 0.000609  
+            option  Swiss Franc CHF 13813.79 0.000072  
+            option  Taiwan Dollar TWD 419.3000 0.002385  
+            option  Thai Baht THB 383.2500 0.002609  
+            option  Trinidadian Dollar TTD 2057.060 0.000486  
+            option  Turkish Lira TRY 4634.190 0.000216  
+            option  United State Dollar USD 13668.21 0.000073  
+            option  Venezuelan Bolivar VEF 1373.720 0.000728  
+          div.convi
+            input.submit(type="submit" value="Convert")
+            input.submit(type="submit" value="Exchange")
+        div.res
+          h3 Hasil Converter
+          div#R-On
+      section
+        h2 Retirement Calculator
+        table
+          tr.color1
+            td.left.lineHeight
+              label(for="monthlySave") Monthly Save
+            td.right.lineHeight
+              input(required='')#monthlySave(type="text" autocomplete="off")
+          tr.color2
+            td.left.lineHeight
+              label(for="annualReturn") Annual Return
+            td.right.lineHeight
+              input(required='')#annualReturn(type="text")
+          tr.color3
+            td.left.lineHeight
+              label(for="retirementAge") Retirement Age
+            td.right.lineHeight 
+              input(required='')#retirementAge(type="text")
+          tr.color4
+            td(colspan=2).lineHeight#colapse
+              button(onclick="Solve()") solve
+          tr.color5
+            td(colspan=2)
+              div#container
+                a#animate1.red
+                a#animate2.blue
+                a#animate3.green
+                a#animate4.orange
+                a#animate5.grey
+
+        div#mark
+          fieldset
+            legend keterangan
+            a.red &nbsp;
+            span 25 tahun
+            a.blue &nbsp;
+            span 30 tahun
+            a.green &nbsp;
+            span 35 tahun
+            a.orange &nbsp;
+            span 40 tahun
+            a.grey &nbsp;
+            span 45 tahun
+
+        div.error#retireError
+          p Kami menganggap anda mulai pada usia 25 tahun
+
+        div.error#valueError
+          p Input harus berupa angka & Input tidak boleh kosong
+      section
+        h2 Created By
+        ul
+          li  
+          li William Tansil  - 14.111.0205
+          li Kelvin          - 14.111.0361
+          li Hendra Tandiono - 14.111.0370
+          li Alex Ciawi      - 14.111.1243
+          li Denny Tan       - 14.111.1847
+      section
+        h1 The End
+
+    script(src='build/build.js')
+    script(src='build/jquery.min.js')
+    // Kelvin
+    // A) Basic Calculator
+    script.
+      var result = document.getElementById("resulted")
+      var operator = ['+','-','x','÷'];
+      var operatorAdded = false;
+      var decimalAdded = false;
+      function Add(Key) {
+        if (!decimalAdded) {
+          result.innerHTML += Key
+          decimalAdded = true
+        }
+      }
+      function AddDigit(Num) {
+        if (Num === 0) {
+          if (result.innerHTML === '' || result.innerHTML !== '0') {
+            result.innerHTML += Num
+          }
+        }
+        else {
+          if (result.innerHTML === '0') {
+            result.innerHTML = ''
+            result.innerHTML += Num
+          }
+          else { 
+            result.innerHTML += Num 
+          }
+        }
+        operatorAdded = false 
+      }
+      function Backspace() {
+        result.innerHTML = result.innerHTML.substr(0, result.innerHTML.length - 1);
+      }
+      function Clear() {
+        result.innerHTML = ''
+        operator = ''
+        decimalAdded = false
+      }
+      function Equal() {
+        var equation = result.innerHTML;
+        var lastChar = equation[equation.length - 1];
+        equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+        //if(operators.indexOf(lastChar) > -1 || lastChar == '.') {
+        //  equation = equation.replace(/.$/, '');
+        //}
+        operatorAdded = false
+        result.innerHTML = eval(equation);
+      }
+      function Inverse() {
+        var res = result.innerHTML
+        res = res * -1
+        result.innerHTML = res
+      }
+      function Operator(op) {
+        if (!operatorAdded){
+          if (op === '+') {
+            result.innerHTML += "+"
+          }
+          else if (op === '-') {
+            result.innerHTML += "-"
+          }
+          else if (op === 'x') {
+            result.innerHTML += "x"
+          }
+          else if (op === '÷') {
+            result.innerHTML += "÷"
+          }
+          operatorAdded = true
+          decimalAdded = false
+        }
+      } 
+    // A)
+
+    // B) Tip Calculator
+    script.
+      var bill = document.getElementById("bill")
+      var tax = document.getElementById("tax")
+      var tipp = document.getElementById("tipp")
+      var split = document.getElementById("split")
+      var b = document.getElementById("btax")
+      var a = document.getElementById("atax")
+      var after = false
+      var output = false
+      b.className = "selected"
+      var A1 = document.getElementById("A1")
+      var B1 = document.getElementById("B1")
+      var A2 = document.getElementById("A2")
+      var B2 = document.getElementById("B2")
+      var A3 = document.getElementById("A3")
+      var B3 = document.getElementById("B3")
+
+      function tipOption(Opt) {
+        if (Opt === 'b' && a.className === "selected") {
+          b.className = "selected"
+          a.className = ""
+          after = false
+        }
+
+        if (Opt === 'a' && b.className === "selected") {
+          a.className = "selected"
+          b.className = ""
+          after = true
+        }
+        if (output) {
+          operate()
+        }
+      }
+
+      function tipPercent (slider) {
+        var slideval1 = document.getElementById('slideval1')
+        slideval1.innerHTML = slider + '%'  
+        tipp.value = document.getElementById('tipp').value
+        if (output) {
+          operate()
+        }
+      }
+
+      function tipReset () {
+        bill.value = ''
+        tax.value = ''
+        tipp.value = 0
+        split.value = 1
+        var output = false
+        slideval1.innerHTML = 0 + '%'
+        slideval2.innerHTML = 1
+        A1.innerHTML = ""
+        B1.innerHTML = ""
+        A2.innerHTML = ""
+        B2.innerHTML = ""
+        A3.innerHTML = ""
+        B3.innerHTML = ""
+        document.getElementById('t').innerHTML = ""
+      }
+
+      function tipSplit (slider) {
+        var slideval2 = document.getElementById('slideval2')
+        slideval2.innerHTML = slider  
+        split.value = document.getElementById('split').value
+        if (output) {
+          operate()
+        }
+      }
+
+      function Tinfo (text) {
+        if (text === 'bill') {
+          bill.value = document.getElementById('bill').value
+          output = true
+          operate()
+        }
+        else {
+          tax.value = document.getElementById('tax').value
+          if (output) {
+            operate()
+          }
+        }
+      }
+
+      function operate(){
+        var a = parseFloat(bill.value)
+        var b
+        if (tax.value == '') b = 0;
+        else b = parseFloat(tax.value)
+        var c
+        if (tipp.value == '') c = 0;
+        else c = parseFloat(tipp.value)
+        var d = parseFloat(split.value)
+        if (!after) { 
+          var hasil1 = a * b / 100
+          var hasil2 = hasil1 / d
+          var hasil3 = a * c / 100
+          var hasil4 = hasil3 / d
+          var hasil5 = a + hasil1 + hasil3
+          var hasil6 = hasil5 / d
+          A1.innerHTML = hasil1.toFixed(2)
+          B1.innerHTML = hasil2.toFixed(2)
+          A2.innerHTML = hasil3.toFixed(2)
+          B2.innerHTML = hasil4.toFixed(2)
+          A3.innerHTML = hasil5.toFixed(2)
+          B3.innerHTML = hasil6.toFixed(2)
+
+          var total = a + hasil1
+          var grandtotal = Math.ceil(hasil5)
+
+          while(grandtotal % d != 0) {
+            grandtotal++
+          }
+
+          var newtip = grandtotal - total
+
+          var t1 = (Math.ceil(B3.innerHTML)).toFixed(2)
+          var t2 = (newtip / d).toFixed(2)
+          var t3 = ((newtip / a) * 100).toFixed(2)
+
+          document.getElementById('t').innerHTML = "Round each payment up : Each Pay is " + t1 + "; Each Tip is " + t2 + "; Tip percentage is " + t3 + "%"
+        }
+        else {
+          var hasil1 = a * b / 100
+          var hasil2 = hasil1 / d
+          var hasil3 = a * c / 100 + a * c / 100 * b / 100
+          var hasil4 = hasil3 / d
+          var hasil5 = a + hasil1 + hasil3
+          var hasil6 = hasil5 / d
+          A1.innerHTML = hasil1.toFixed(2)
+          B1.innerHTML = hasil2.toFixed(2)
+          A2.innerHTML = hasil3.toFixed(2)
+          B2.innerHTML = hasil4.toFixed(2)
+          A3.innerHTML = hasil5.toFixed(2)
+          B3.innerHTML = hasil6.toFixed(2)
+
+          var total = a + hasil1
+          var grandtotal = Math.ceil(hasil5)
+
+          while(grandtotal % d != 0) {
+            grandtotal++
+          }
+
+          var newtip = grandtotal - total
+
+          var t1 = (Math.ceil(B3.innerHTML)).toFixed(2)
+          var t2 = (newtip / d).toFixed(2)
+          var t3 = ((newtip / total) * 100).toFixed(2)
+
+          document.getElementById('t').innerHTML = "Round each payment up : Each Pay is " + t1 + "; Each Tip is " + t2 + "; Tip percentage is " + t3 + "%"
+        }
+      }
+    // B)
+
+    // C) Percentage Calculator
+    script. 
+      var x1 = document.getElementById("input1X")
+      var y1 = document.getElementById("input1Y")
+      var x2 = document.getElementById("input2X")
+      var y2 = document.getElementById("input2Y")
+      var x3 = document.getElementById("input3X")
+      var y3 = document.getElementById("input3Y")
+      var info1 = document.getElementById("perc1")
+      var info2 = document.getElementById("perc2")
+      var info3 = document.getElementById("perc3")
+
+      function Pinfo(ID) {
+        if (ID === '1X') {
+          x1.value = document.getElementById("input1X").value
+        }
+        else if (ID === '1Y') {
+          y1.value = document.getElementById("input1Y").value
+        }
+        else if (ID === '2X') {
+          x2.value = document.getElementById("input2X").value
+        }
+        else if (ID === '2Y') {
+          y2.value = document.getElementById("input2Y").value
+        }
+        else if (ID === '3X') {
+          x3.value = document.getElementById("input3X").value
+        }
+        else {
+          y3.value = document.getElementById("input3Y").value
+        }
+        if (x1.value.length != 0 && y1.value.length != 0) {
+          var hasil = x1.value / 100 * y1.value
+          info1.innerHTML = x1.value + "% of " + y1.value + " is: " + hasil.toFixed(2)
+        }
+        if (x2.value.length != 0 && y2.value.length != 0) {
+          var hasil = x2.value / y2.value * 100
+          info2.innerHTML = x1.value + " of " + y1.value + " is: " + hasil.toFixed(2) + "%"
+        }
+        if (x3.value.length != 0 && y3.value.length != 0) {
+          var hasil = (y3.value - x3.value) / x3.value * 100
+          info3.innerHTML = "From " + x1.value + " to " + y1.value + " is: " + hasil.toFixed(2) + "%"
+        }
+      }
+
+      function Reset(Num) {
+        if (Num === 1) {
+          x1.value = ''
+          y1.value = ''
+          info1.innerHTML = ''
+        }
+        else if (Num === 2) {
+          x2.value = ''
+          y2.value = ''
+          info2.innerHTML = ''
+        }
+        else {
+          x3.value = ''
+          y3.value = ''
+          info3.innerHTML = ''
+        }
+      }
+    // C)
+    //Kelvin
+
+    //Denny Tan
+    script.
+      var TP = document.getElementById('TP');
+      var IA = document.getElementById('IA');
+      var MV = document.getElementById('MV');
+      var APY = document.getElementById('APY');
+      var PA = document.getElementById('PA');
+      var MD = document.getElementById('MD');
+      var PM = document.getElementById('PM');
+      var AIR = document.getElementById('AIR');
+      var CHC = document.getElementById('Choice');
+      var KET = document.getElementById('keterangan');
+      var bunga = [];
+
+      function Hitung(){    
+        var PAv = PA.value;
+        var MDv = MD.value;
+        var PMv = PM.value;
+        var AIRv = AIR.value;
+        var CHCv = parseInt(CHC.value);
+        var TPv;
+        var IAv;
+        var MVv;
+        var APYv;
+
+        var ArrMonth = [];
+        for (var i = 0; i <= PMv; i++) {
+          ArrMonth.push(i);
+        }
+        for (var i = 0; i <= PMv; i++) {
+          bunga.push(i);
+        }
+        if(PA.value<=100000000000&&MD.value<=100000000000){
+          TPv = parseInt(PAv) + parseInt(PMv*MDv);
+          TP.value = TPv;
+          TP.innerHTML = 'Rp.'+ TP.value;
+
+          APYv = AIRv;
+          APY.value = APYv;
+          APY.innerHTML = APY.value + '%';
+
+          for (var i = 0; i < ArrMonth.length; i++) {
+            if(i==0){
+              ArrMonth[i] = parseInt(PAv);
+              bunga[i] = ArrMonth[i]*(AIRv/12)/100;
+            }
+            else{
+              if(i%CHCv==0){
+                ArrMonth[i] = parseInt(ArrMonth[i-1]) + parseInt(MDv);
+                bunga[i] = ArrMonth[i]*(AIRv/12)/100;
+                ArrMonth[i] += bunga[i];
+              }
+              else{
+                bunga[i] = bunga[i-1];
+                ArrMonth[i] = parseInt(ArrMonth[i-1]) + parseInt(MDv) + bunga[i];
+              }
+            }
+            /*document.write('bulan : ' + i + ' adalah : ' + ArrMonth[i].toFixed(0) + '<br/>');*/ 
+          }
+
+          MVv = parseInt(ArrMonth[ArrMonth.length-1]);
+          MV.value = MVv;
+          MV.innerHTML = 'Rp.' + MV.value;
+
+          IAv = MVv - TPv;
+          IA.value = IAv;
+          IA.innerHTML = 'Rp.' + IA.value;
+        }
+    
+
+        if(PM.value!=0 && PM.value<=1000 && PA.value<=100000000000){
+          record.innerHTML = "";
+          buatTabel(bunga, ArrMonth);
+          KET.innerHTML = "";
+          KET.innerHTML += "Calculation based on :<br>";
+          KET.innerHTML += "Principal Ammount : Rp." + PA.value + "<br>";
+          KET.innerHTML += "Monthly Deposit : Rp." + MD.value + "<br>";
+          KET.innerHTML += "Period : " + PM.value + " Month<br>";
+          KET.innerHTML += "Annual Interest Rate : " + AIR.value + "%<br>";
+          KET.innerHTML += "Compounding type : " + CHC.options[CHC.selectedIndex].text;
+        }
+      }
+
+      function Hapus(){
+        PA.value = 0;
+        MD.value = 0;
+        PM.value = 0;
+        AIR.value = 0;
+        TP.value = 0;
+        TP.innerHTML = 'Rp.0';
+        IA.value = 0;
+        IA.innerHTML = 'Rp.0';
+        MV.value = 0;
+        MV.innerHTML = 'Rp.0';
+        APY.value = 0;
+        APY.innerHTML = '0%';
+        KET.innerHTML = "";
+        record.innerHTML = "";
+      }
+
+      function buatTabel(bunga, ArrMonth){
+        var record = document.getElementById("record");
+        var table = document.createElement("table");
+        table.className = "table table-hover";
+        var thead = document.createElement("thead");
+        var trh = document.createElement("tr");
+        for(var i=0;i<3;i++){
+          if(i==0){
+            var th = document.createElement("th");
+            th.innerHTML = " Month ";
+          }
+          else if(i==1){
+            var th = document.createElement("th");
+            th.innerHTML = " Interest ";
+          }
+          else if(i==2){
+            var th = document.createElement("th");
+            th.innerHTML = " Ammount ";
+          }
+          trh.appendChild(th);
+        }
+        var tbody = document.createElement("tbody");
+        for (var i=0;i<parseInt(PM.value);i++){
+          var trb = document.createElement("tr");
+          for(var j=0;j<3;j++){
+            if(j==0){
+              var td = document.createElement("td");
+              td.innerHTML = i+1;
+            }
+            if(j==1){
+              var td = document.createElement("td");
+              td.innerHTML = bunga[i].toFixed(2);
+            }
+            if(j==2){
+              var td = document.createElement("td");
+              td.innerHTML = ArrMonth[i].toFixed(2);
+            }
+            trb.appendChild(td);
+          }
+          tbody.appendChild(trb);
+        }
+    
+        thead.appendChild(trh); 
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        record.appendChild(table);
+      }
+  
+      document.getElementById('count').onclick = function(){ Hitung(); }
+      document.getElementById('del').onclick = function(){ Hapus(); }
+    //Denny Tan
+
+    //Alex
+    script.
+      var lResult = document.getElementById("lResult");
+      var rResult =  document.getElementById("rResult");
+      var result = document.getElementById("result");
+      var right = false;
+      var left = false;
+      var disoutput = false;
+      function Add(Key) {
+        if (!decimalAdded) {
+          result.value += Key
+          decimalAdded = true
+        }
+      }
+      function lClicked() {
+        right = false;
+        left = true;
+      }
+      function rClicked() {
+        left = false;
+        right = true;
+      }
+      
+      function changeAddDisc() {
+        var adisc = document.getElementById('apercent').value
+        if (adisc > 100) { 
+            adisc = 100 
+            document.getElementById('apercent').value = 100
+        }
+        if (disoutput) { disoperate() }
+      }
+      
+      function changePrice() {
+        var adf = document.getElementById('lResult').value
+        disoutput = true
+        disoperate()
+      }
+      
+      function changeTax() {
+        var at = document.getElementById('rResult').value
+        if (at > 100) { 
+            at = 100 
+            document.getElementById('rResult').value = 100
+        }
+        if (disoutput) { disoperate() }
+      }
+           
+      function tipCalculate (slider){
+        var percent = document.getElementById('percent');
+        percent.value = slider;
+        if (disoutput) { disoperate() }
+      }
+    
+      function disoperate() {
+        var pricetag = document.getElementById('lResult').value
+        var taxtag = document.getElementById('rResult').value
+        var disctag = document.getElementById('percent').value
+        document.getElementById('price').innerHTML = pricetag
+        var adisctag = document.getElementById('apercent').value
+        var taxed = parseFloat(pricetag * taxtag / 100)
+        var priced = parseFloat(parseInt(pricetag) + taxed)
+        document.getElementById('taxA').innerHTML = "Tax (%): " + taxtag + "%"
+        document.getElementById('Mcircle').innerHTML = "-" + disctag + "%"
+        var saved = parseFloat(priced * disctag / 100)
+        var resulted = parseFloat(parseFloat(priced) - saved)
+        if (adisctag != '') {
+          document.getElementById('aCircle').className = "disc"
+          if (adisctag == 0){
+            document.getElementById('Scircle').innerHTML = adisctag + "%"
+          }
+          else { 
+            document.getElementById('Scircle').innerHTML = "-" + adisctag + "%" 
+          }
+          resulted = parseFloat(resulted - (resulted * adisctag /100))
+          saved = priced - resulted
+        }
+        document.getElementById('resultA').innerHTML = resulted.toFixed(2)
+        document.getElementById('save').innerHTML = "Your save: " + saved.toFixed(2)
+      }
+    //Alex
+
+    //Hendra
+    script.
+      $(document).ready(function(){
+        var moneyx = [];
+        var moneyy = [];
+        for(var i = 0; i < 53; i++){
+          var x,y;
+          x = $("#C1 option").eq(i).html();
+          y = "(" + x.split(" ")[3] + ") " + x.split(" ")[1];
+          $("#C1 option").eq(i).html(y);
+          $("#C2 option").eq(i).html(y);
+          moneyy.push($.trim(y));
+          moneyx.push($.trim(x));
+        }
+        $("#C-On input[value='Exchange']").click(function(){
+          var x = $("#C1").val();
+          var y = $("#C2").val();
+          $("#C1").val(y);
+          $("#C2").val(x);
+        });
+        $("#C-On input[value='Convert']").click(function(){
+          var k, l, m, n, r, s, x, y, z;
+          x = $("#C1").val();   y = $("#C2").val();
+          z = $("#C-On input[type='number']").val();
+          k = $.inArray(x,moneyy);  l = moneyx[k];
+          m = l.split(" ")[4];    r = z / m;
+          n = l.split(" ")[1];    z = parseInt(z).toFixed(2) + " " + n;
+          k = $.inArray(y,moneyy);  l = moneyx[k];
+          m = l.split(" ")[4];    r = r * m;
+          n = l.split(" ")[1];    r = r.toFixed(2) +" "+ n;
+          var resultH = "<label>"+ x + ": </label>" + z + "<br><label>" + y + ": </label>" + r;
+          $("#R-On").html(resultH);
+          //window.location.href="#3";
+        });
+      });
+    //Hendra
+
+    //William Tansil
+    script.
+      var highest;
+
+          function Solve(){
+            var $monthlySave = document.getElementById('monthlySave').value;
+            var $annualReturn = document.getElementById('annualReturn').value;
+            var $retirementAge = document.getElementById('retirementAge').value;
+            
+            if ($monthlySave == '' || $annualReturn == '') {
+              ValueError();
+            }
+            else {
+              GUI();
+            }
+
+            if ($retirementAge <= 25){
+              RetireError();
+            } 
+            else {
+              GUI();
+            }
+          }
+
+          function Calculate($year){
+            var $monthlySave = parseInt(document.getElementById('monthlySave').value) * 12;
+            var $annualReturn = parseInt(document.getElementById('annualReturn').value) / 100;
+            var $retirementAge = parseInt(document.getElementById('retirementAge').value);
+            var bound = parseInt($retirementAge) - parseInt($year);
+            var $result = 0;
+            var i = 0;
+
+            while(i<bound){
+              if(i==bound-1){
+                $result += $monthlySave;
+              } else {
+                $result += ($monthlySave + $annualReturn * $monthlySave);
+              }
+              i++;
+            }
+            return $result;
+          }
+          function GUI(){
+            highest = Calculate(25);
+            //ClearAll
+            document.getElementById("animate1").style.width = 5 + 'px';
+            document.getElementById("animate2").style.width = 5 + 'px';
+            document.getElementById("animate3").style.width = 5 + 'px';
+            document.getElementById("animate4").style.width = 5 + 'px';
+            document.getElementById("animate5").style.width = 5 + 'px';
+
+            //Animation
+            if(Calculate(25)>0){
+              move1();
+            }
+            if(Calculate(30)>0){
+              move2();
+            }
+            if(Calculate(35)>0){
+              move3();
+            }
+            if(Calculate(40)>0){
+              move4();
+            }
+            if(Calculate(45)>0){
+              move5();
+            }
+            //Nominal show
+            show();
+          }
+          function move1(){
+            var elem = document.getElementById("animate1");   
+            var width = 5;
+            var id = setInterval(frame, 5);
+            function frame() {
+              if (width >= 100/(highest/Calculate(25))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function move2(){
+            var elem = document.getElementById("animate2");   
+            var width = 5;
+            elem.style.width = 0;
+            var id = setInterval(frame, 7.5);
+            function frame() {
+              if (width >= 100/(highest/Calculate(30))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          var usia3 = Calculate(35);
+          function move3(){
+            var elem = document.getElementById("animate3");   
+            var width = 5;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 100/(highest/Calculate(35))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function move4(){
+            var elem = document.getElementById("animate4");   
+            var width = 5;
+            var id = setInterval(frame, 12.5);
+            function frame() {
+              if (width >= 100/(highest/Calculate(40))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function move5(){
+            var elem = document.getElementById("animate5");   
+            var width = 5;
+            var id = setInterval(frame, 15);
+            function frame() {
+              if (width >= 100/(highest/Calculate(45))/100*400) {
+              clearInterval(id);
+              } else {
+              width++;
+              elem.style.width = width + 'px';
+              }
+            }
+          }
+          function show(){
+            //declaration
+            var elem1 = document.getElementById("animate1");
+            var elem2 = document.getElementById("animate2");
+            var elem3 = document.getElementById("animate3");
+            var elem4 = document.getElementById("animate4");
+            var elem5 = document.getElementById("animate5");
+            //show nominal
+            elem1.innerHTML = Calculate(25);
+            elem2.innerHTML = Calculate(30);
+            elem3.innerHTML = Calculate(35);
+            elem4.innerHTML = Calculate(40);
+            elem5.innerHTML = Calculate(45);          
+          }
+
+          function RetireError() {
+            var x = document.getElementById("retireError");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+          }
+
+          function ValueError(){
+            var x = document.getElementById("valueError");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+          }
+    //William Tansil
